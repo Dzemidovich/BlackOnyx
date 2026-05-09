@@ -27,34 +27,8 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
     }
 });
 
-// --- 2. НАСТРОЙКА БАЗЫ ДАННЫХ (POSTGRESQL) ---
-string GetConnectionString(string rawUrl)
-{
-    if (string.IsNullOrEmpty(rawUrl)) return null;
-
-    // Render может присылать как postgres:// так и postgresql://
-    if (!rawUrl.StartsWith("postgres://") && !rawUrl.StartsWith("postgresql://")) 
-        return rawUrl;
-
-    try
-    {
-        var databaseUri = new Uri(rawUrl);
-        var userInfo = databaseUri.UserInfo.Split(':');
-        var user = userInfo[0];
-        var password = userInfo.Length > 1 ? userInfo[1] : "";
-        var host = databaseUri.Host;
-        var port = databaseUri.Port > 0 ? databaseUri.Port : 5432;
-        var database = databaseUri.AbsolutePath.TrimStart('/');
-
-        // Собираем строку, которую понимает Npgsql (драйвер PostgreSQL для .NET)
-        return $"Host={host};Port={port};Database={database};Username={user};Password={password};" +
-               $"SSL Mode=Require;Trust Server Certificate=true;";
-    }
-    catch
-    {
-        return rawUrl;
-    }
 }
+
 // --- 3. СЕРВИСЫ И КОНТРОЛЛЕРЫ ---
 // КРИТИЧНО: Чтобы ошибка в фоне не вызывала статус 139 и остановку сайта
 builder.Services.Configure<HostOptions>(options =>
