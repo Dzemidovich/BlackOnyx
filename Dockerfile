@@ -1,13 +1,11 @@
 FROM ://microsoft.com AS build
 WORKDIR /src
-COPY ["Diplom.csproj", "./"]
-RUN dotnet restore "Diplom.csproj"
 COPY . .
-RUN dotnet publish "Diplom.csproj" -c Release -o /app/publish
+RUN dotnet restore
+RUN dotnet publish -c Release -o /app
 
 FROM ://microsoft.com
 WORKDIR /app
-COPY --from=build /app/publish .
+COPY --from=build /app .
 ENV ASPNETCORE_URLS=http://+:80
-EXPOSE 80
 ENTRYPOINT ["dotnet", "Diplom.dll"]
