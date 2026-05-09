@@ -23,22 +23,21 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
     }
     else
     {
-        serverOptions.ListenAnyIP(8888); // Локальный порт по умолчанию
+        serverOptions.ListenAnyIP(8888); 
     }
 });
 
 // --- 2. НАСТРОЙКА БАЗЫ ДАННЫХ (POSTGRESQL) ---
 var rawConnectionString = Environment.GetEnvironmentVariable("DATABASE_URL") 
-                       ?? builder.Configuration.GetConnectionString("DefaultConnection");
+                         ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Функция для конвертации формата postgres:// в формат .NET
 string GetConnectionString(string rawUrl)
 {
     if (string.IsNullOrEmpty(rawUrl)) return null;
     if (!rawUrl.StartsWith("postgres://")) return rawUrl;
 
     var databaseUri = new Uri(rawUrl);
-    var userInfo = databaseUri.UserInfo.Split(':');
+    var userInfo = databaseUri.UserInfo.Contains(':') ? databaseUri.UserInfo.Split(':') : new[] { databaseUri.UserInfo, "" };
 
     return $"Host={databaseUri.Host};Port={databaseUri.Port};Database={databaseUri.AbsolutePath.TrimStart('/')};" +
            $"Username={userInfo[0]};Password={userInfo[1]};SSL Mode=Require;Trust Server Certificate=true;";
@@ -47,8 +46,13 @@ string GetConnectionString(string rawUrl)
 builder.Services.AddDbContext<ToolShopDbContext>(options =>
     options.UseNpgsql(GetConnectionString(rawConnectionString)));
 
-
 // --- 3. СЕРВИСЫ И КОНТРОЛЛЕРЫ ---
+// КРИТИЧНО: Чтобы ошибка в фоне не вызывала статус 139 и остановку сайта
+builder.Services.Configure<HostOptions>(options =>
+{
+    options.BackgroundServiceExceptionBehavior = BackgroundServiceExceptionBehavior.Ignore;
+});
+
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
@@ -104,20 +108,17 @@ builder.Services.AddCors(options =>
     {
         if (builder.Environment.IsDevelopment())
         {
-            // В режиме разработки разрешаем всё, но БЕЗ AllowCredentials, 
-            // так как стоит AllowAnyOrigin (иначе будет та же ошибка 139)
             policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
         }
         else
         {
-            // Считываем из настроек Render (ALLOWED_ORIGINS)
             var origins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS")?.Split(',') 
                           ?? new[] { "https://blackonyx-1.onrender.com" }; 
 
             policy.WithOrigins(origins)
                   .AllowAnyMethod()
                   .AllowAnyHeader()
-                  .AllowCredentials(); // Теперь это будет работать, так как origins конкретные
+                  .AllowCredentials(); 
         }
     });
 });
@@ -140,14 +141,6 @@ var app = builder.Build();
 
 // --- 7. КОНВЕЙЕР ОБРАБОТКИ (MIDDLEWARE) ---
 
-// Удаление технических заголовков
-app.Use(async (context, next) =>
-{
-    context.Response.Headers.Remove("Server");
-    context.Response.Headers.Remove("X-Powered-By");
-    await next();
-});
-
 app.UseExceptionHandler();
 
 if (app.Environment.IsDevelopment())
@@ -156,22 +149,23 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Порядок важен! 
 app.UseStaticFiles(); 
+app.UseRouting(); // Добавлено явно для корректной работы Cors и RateLimiting
 
 app.UseCors("AllowSpecificOrigins");
+app.UseRateLimiter();
 
-// Security Headers
 app.Use(async (context, next) =>
 {
+    context.Response.Headers.Remove("Server");
+    context.Response.Headers.Remove("X-Powered-By");
     context.Response.Headers.Append("X-Content-Type-Options", "nosniff");
     context.Response.Headers.Append("X-Frame-Options", "DENY");
     context.Response.Headers.Append("Referrer-Policy", "strict-origin-when-cross-origin");
     await next();
 });
 
-app.UseRateLimiter();
-
-// На Render HTTPS управляется самим сервисом, редирект часто не нужен
 if (!app.Environment.IsDevelopment() && Environment.GetEnvironmentVariable("DISABLE_HTTPS_REDIRECT") != "true")
 {
     app.UseHttpsRedirection();
@@ -181,6 +175,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapFallbackToFile("index.html"); // Для SPA (React/Vue/JS)
+app.MapFallbackToFile("index.html");
 
 app.Run();
