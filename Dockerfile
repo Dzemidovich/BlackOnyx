@@ -1,19 +1,24 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# Сборка
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
-# Копируем всё
+# Копируем файл проекта и восстанавливаем пакеты
+COPY ["Diplom.csproj", "./"]
+RUN dotnet restore "Diplom.csproj"
+
+# Копируем всё остальное и публикуем
 COPY . .
+# КРИТИЧНО: Добавляем /p:UseAppHost=false, чтобы избежать ошибки сегментации (139)
+RUN dotnet publish "Diplom.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-# Находим первый .csproj файл
-RUN dotnet restore $(find . -name "*.csproj" | head -1)
-
-# Публикуем
-RUN dotnet publish $(find . -name "*.csproj" | head -1) -c Release -o /app
-
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+# Финальный образ
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
-COPY --from=build /app .
+COPY --from=build /app/publish .
 
-ENV ASPNETCORE_URLS=http://+:80
-EXPOSE 80
+# Настройка порта под Render
+ENV ASPNETCORE_URLS=http://+:10000
+EXPOSE 10000
+
+# Запускаем через dll (это надежнее для контейнера)
 ENTRYPOINT ["dotnet", "Diplom.dll"]
