@@ -109,7 +109,7 @@ builder.Services.AddCors(options =>
         else
         {
             var origins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS")?.Split(',') 
-                          ?? new[] { "https://your-app-name.onrender.com" }; // Укажи свой домен здесь
+                          ?? new[] { "[https://blackonyx-1.onrender.com](https://blackonyx-1.onrender.com)" }; // Укажи свой домен здесь
 
             policy.WithOrigins(origins)
                   .AllowAnyMethod()
@@ -118,6 +118,7 @@ builder.Services.AddCors(options =>
         }
     });
 });
+
 
 // --- 6. RATE LIMITING ---
 builder.Services.AddRateLimiter(options =>
