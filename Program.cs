@@ -27,10 +27,40 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
     }
 });
 
+// --- 2. НАСТРОЙКА БАЗЫ ДАННЫХ (POSTGRESQL) ---
+string GetConnectionString(string rawUrl)
+{
+    if (string.IsNullOrEmpty(rawUrl)) return null;
+
+    // Проверка обоих вариантов протокола для корректной работы на Render
+    if (!rawUrl.StartsWith("postgres://") && !rawUrl.StartsWith("postgresql://")) 
+        return rawUrl;
+
+    try
+    {
+        var databaseUri = new Uri(rawUrl);
+        var userInfo = databaseUri.UserInfo.Split(':');
+
+        // Формируем строку с SSL Mode=Require (критично для облачных БД)
+        return $"Host={databaseUri.Host};Port={databaseUri.Port};Database={databaseUri.AbsolutePath.TrimStart('/')};" +
+               $"Username={userInfo[0]};Password={userInfo[1]};SSL Mode=Require;Trust Server Certificate=true;";
+    }
+    catch
+    {
+        return rawUrl;
+    }
 }
 
+// Получаем URL из переменной окружения Render или из локального конфига
+var connectionString = GetConnectionString(
+    Environment.GetEnvironmentVariable("DATABASE_URL") ?? 
+    builder.Configuration.GetConnectionString("DefaultConnection")
+);
+
+builder.Services.AddDbContext<ToolShopDbContext>(options =>
+    options.UseNpgsql(connectionString));
+
 // --- 3. СЕРВИСЫ И КОНТРОЛЛЕРЫ ---
-// КРИТИЧНО: Чтобы ошибка в фоне не вызывала статус 139 и остановку сайта
 builder.Services.Configure<HostOptions>(options =>
 {
     options.BackgroundServiceExceptionBehavior = BackgroundServiceExceptionBehavior.Ignore;
@@ -93,16 +123,13 @@ builder.Services.AddCors(options =>
         
         if (builder.Environment.IsDevelopment() || string.IsNullOrEmpty(rawOrigins))
         {
-            // Если мы в разработке или список пуст — разрешаем всё, НО БЕЗ Credentials
             policy.AllowAnyOrigin()
                   .AllowAnyMethod()
                   .AllowAnyHeader();
         }
         else
         {
-            // Если список доменов задан (на Render) — разрешаем их С Credentials
             var origins = rawOrigins.Split(',', StringSplitOptions.RemoveEmptyEntries);
-            
             policy.WithOrigins(origins)
                   .AllowAnyMethod()
                   .AllowAnyHeader()
@@ -128,7 +155,6 @@ builder.Services.AddRateLimiter(options =>
 var app = builder.Build();
 
 // --- 7. КОНВЕЙЕР ОБРАБОТКИ (MIDDLEWARE) ---
-
 app.UseExceptionHandler();
 
 if (app.Environment.IsDevelopment())
@@ -137,9 +163,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Порядок важен! 
 app.UseStaticFiles(); 
-app.UseRouting(); // Добавлено явно для корректной работы Cors и RateLimiting
+app.UseRouting(); 
 
 app.UseCors("AllowSpecificOrigins");
 app.UseRateLimiter();
@@ -165,4 +190,5 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapFallbackToFile("index.html");
 
+// ВАЖНО: Мы не вызываем Migrate(), так как база уже заполнена через Restore
 app.Run();
