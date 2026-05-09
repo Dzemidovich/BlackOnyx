@@ -106,15 +106,20 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins", policy =>
     {
-        if (builder.Environment.IsDevelopment())
+        var rawOrigins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS");
+        
+        if (builder.Environment.IsDevelopment() || string.IsNullOrEmpty(rawOrigins))
         {
-            policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            // Если мы в разработке или список пуст — разрешаем всё, НО БЕЗ Credentials
+            policy.AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
         }
         else
         {
-            var origins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS")?.Split(',') 
-                          ?? new[] { "https://blackonyx-1.onrender.com" }; 
-
+            // Если список доменов задан (на Render) — разрешаем их С Credentials
+            var origins = rawOrigins.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            
             policy.WithOrigins(origins)
                   .AllowAnyMethod()
                   .AllowAnyHeader()
