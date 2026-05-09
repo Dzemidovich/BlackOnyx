@@ -104,21 +104,23 @@ builder.Services.AddCors(options =>
     {
         if (builder.Environment.IsDevelopment())
         {
+            // В режиме разработки разрешаем всё, но БЕЗ AllowCredentials, 
+            // так как стоит AllowAnyOrigin (иначе будет та же ошибка 139)
             policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
         }
         else
         {
+            // Считываем из настроек Render (ALLOWED_ORIGINS)
             var origins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS")?.Split(',') 
-                          ?? new[] { "[https://blackonyx-1.onrender.com](https://blackonyx-1.onrender.com)" }; // Укажи свой домен здесь
+                          ?? new[] { "https://blackonyx-1.onrender.com" }; 
 
             policy.WithOrigins(origins)
                   .AllowAnyMethod()
                   .AllowAnyHeader()
-                  .AllowCredentials();
+                  .AllowCredentials(); // Теперь это будет работать, так как origins конкретные
         }
     });
 });
-
 
 // --- 6. RATE LIMITING ---
 builder.Services.AddRateLimiter(options =>
