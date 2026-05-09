@@ -1,0 +1,135 @@
+<div class="profile-modern">
+    <div class="profile-sidebar">
+        <div class="profile-user-info">
+            <div class="profile-avatar-circle" id="profile-avatar-letter"></div>
+            <h2 class="profile-user-name" id="profile-user-name"></h2>
+            <p class="profile-user-email" id="profile-user-email"></p>
+        </div>
+
+        <nav class="profile-nav">
+            <a href="#" class="profile-nav-item active" data-section="personal" onclick="app.switchProfileSection(event, 'personal')" id="nav-personal"></a>
+            <a href="#" class="profile-nav-item" data-section="security" onclick="app.switchProfileSection(event, 'security')" id="nav-security"></a>
+            <a href="#" class="profile-nav-item" data-section="loyalty" onclick="app.switchProfileSection(event, 'loyalty')">
+                <i class="fas fa-gift"></i> Программа лояльности
+            </a>
+            <a href="#" class="profile-nav-item" data-section="orders" onclick="app.switchProfileSection(event, 'orders')" id="nav-orders-link"></a>
+        </nav>
+
+        <button class="profile-logout-btn" onclick="app.logout()" id="profile-logout-btn"></button>
+    </div>
+
+    <div class="profile-content">
+        <div class="profile-section active" id="section-personal">
+            <h1 class="profile-section-title" id="personal-title"></h1>
+            <p class="profile-section-subtitle" id="personal-subtitle"></p>
+            <div class="profile-form-card">
+                <div class="profile-form-group">
+                    <label class="profile-label" id="label-fullname"></label>
+                    <input type="text" class="profile-input" id="profile-fullname" placeholder="">
+                </div>
+                <div class="profile-form-group">
+                    <label class="profile-label" id="label-email"></label>
+                    <input type="email" class="profile-input" id="profile-email" readonly>
+                    <span class="profile-input-hint" id="hint-email"></span>
+                </div>
+                <div class="profile-form-group">
+                    <label class="profile-label" id="label-role"></label>
+                    <input type="text" class="profile-input" id="profile-role" readonly>
+                </div>
+                <div class="profile-form-actions">
+                    <button class="profile-btn-primary" onclick="app.updateProfileInfo()" id="btn-save-profile"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-section" id="section-security">
+            <h1 class="profile-section-title" id="security-title"></h1>
+            <p class="profile-section-subtitle" id="security-subtitle"></p>
+            <div class="profile-form-card">
+                <div class="profile-form-group">
+                    <label class="profile-label" id="label-current-password"></label>
+                    <input type="password" class="profile-input" id="current-password" placeholder="">
+                </div>
+                <div class="profile-form-group">
+                    <label class="profile-label" id="label-new-password"></label>
+                    <input type="password" class="profile-input" id="new-password" placeholder="">
+                    <span class="profile-input-hint" id="hint-password"></span>
+                </div>
+                <div class="profile-form-group">
+                    <label class="profile-label" id="label-confirm-password"></label>
+                    <input type="password" class="profile-input" id="confirm-password" placeholder="">
+                </div>
+                <div class="profile-form-actions">
+                    <button class="profile-btn-primary" onclick="app.changePassword()" id="btn-change-password"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-section" id="section-loyalty">
+            <h1 class="profile-section-title">
+                <i class="fas fa-gift"></i> Программа лояльности
+            </h1>
+            <p class="profile-section-subtitle">Накапливайте бонусы и получайте скидки на покупки</p>
+            
+            <div class="loyalty-card">
+                <div class="loyalty-header">
+                    <div class="loyalty-discount">
+                        <div class="loyalty-discount-label">Ваша скидка</div>
+                        <div class="loyalty-discount-value" id="loyalty-discount">0%</div>
+                    </div>
+                    <div class="loyalty-total">
+                        <div class="loyalty-total-label">Сумма заказов</div>
+                        <div class="loyalty-total-value" id="loyalty-total">0 BYN</div>
+                    </div>
+                </div>
+
+                <div class="loyalty-progress-section" id="loyalty-progress-section">
+                    <div class="loyalty-progress-header">
+                        <span id="loyalty-progress-text">До следующего уровня</span>
+                        <span id="loyalty-progress-amount">0 BYN</span>
+                    </div>
+                    <div class="loyalty-progress-bar">
+                        <div class="loyalty-progress-fill" id="loyalty-progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="loyalty-progress-footer">
+                        <span id="loyalty-next-discount">Следующая скидка: 0%</span>
+                    </div>
+                </div>
+
+                <div class="loyalty-max-level" id="loyalty-max-level" style="display: none;">
+                    <i class="fas fa-trophy"></i>
+                    <p>Поздравляем! Вы достигли максимального уровня скидки!</p>
+                </div>
+
+                <div class="loyalty-thresholds">
+                    <h3>Уровни скидок</h3>
+                    <div class="loyalty-threshold-list">
+                        <div class="loyalty-threshold-item">
+                            <i class="fas fa-star"></i>
+                            <span>От 1 000 BYN — скидка 3%</span>
+                        </div>
+                        <div class="loyalty-threshold-item">
+                            <i class="fas fa-star"></i>
+                            <span>От 5 000 BYN — скидка 5%</span>
+                        </div>
+                        <div class="loyalty-threshold-item">
+                            <i class="fas fa-star"></i>
+                            <span>От 10 000 BYN — скидка 10%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-section" id="section-orders">
+            <div class="profile-section-header">
+                <div>
+                    <h1 class="profile-section-title" id="orders-section-title"></h1>
+                    <p class="profile-section-subtitle" id="orders-section-subtitle"></p>
+                </div>
+                <button class="profile-btn-secondary" onclick="app.nav('orders')" id="btn-all-orders"></button>
+            </div>
+            <div id="profile-orders-list"></div>
+        </div>
+    </div>
+</div>

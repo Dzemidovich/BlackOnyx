@@ -1,0 +1,161 @@
+        /* --- UTILITY CLASSES --- */
+        .hidden {
+            display: none !important;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .items-start {
+            align-items: flex-start;
+        }
+
+        .items-end {
+            align-items: flex-end;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .justify-end {
+            justify-content: flex-end;
+        }
+
+        .gap-1 {
+            gap: 4px;
+        }
+
+        .gap-2 {
+            gap: 8px;
+        }
+
+        .gap-3 {
+            gap: 12px;
+        }
+
+        .gap-4 {
+            gap: 16px;
+        }
+
+        .gap-5 {
+            gap: 20px;
+        }
+
+        .gap-6 {
+            gap: 24px;
+        }
+
+        .gap-8 {
+            gap: 32px;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .h-full {
+            height: 100%;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+
+        .text-xs {
+            font-size: 0.75rem;
+        }
+
+        .font-medium {
+            font-weight: 500;
+        }
+
+        .font-semibold {
+            font-weight: 600;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .font-extrabold {
+            font-weight: 800;
+        }
+
+        .truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        .select-none {
+            user-select: none;
+        }
+
+        /* --- SCROLLBAR --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+/* Guest mode styles */
+.guest-only {
+    display: none !important;
+}
+
+body:not(.role-customer):not(.role-manager):not(.role-admin) .customer-only,
+body:not(.role-customer):not(.role-manager):not(.role-admin) .manager-only,
+body:not(.role-customer):not(.role-manager):not(.role-admin) .admin-only {
+    display: none !important;
+}
+
+/* Show guest-only elements when not logged in */
+body:not(.role-customer):not(.role-manager):not(.role-admin) .guest-only,
+body.guest-mode .guest-only {
+    display: inline-flex !important;
+}
+
+/* Body class for guest mode */
+body.guest-mode .role-customer,
+body.guest-mode .role-manager,
+body.guest-mode .role-admin {
+    display: none;
+}

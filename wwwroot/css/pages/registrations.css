@@ -1,0 +1,314 @@
+/* Модерация регистраций */
+
+/* Фильтры */
+.filter-chips {
+    display: flex;
+    gap: 12px;
+    padding: 0 24px 16px 24px;
+    flex-wrap: wrap;
+}
+
+.filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 2px solid #dee2e6;
+    background: white;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-chip:hover {
+    border-color: #007656;
+    color: #007656;
+    background: #f0fdf8;
+}
+
+.filter-chip.active {
+    background: #007656;
+    border-color: #007656;
+    color: white;
+}
+
+.filter-chip i {
+    font-size: 14px;
+}
+
+/* Статус бейджи */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.status-badge.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-badge.status-approved {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.status-rejected {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status-badge i {
+    font-size: 12px;
+}
+
+/* Информация о модерации */
+.moderation-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    margin-top: 16px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #6c757d;
+}
+
+.moderation-info i {
+    margin-right: 6px;
+}
+
+.rejection-reason {
+    color: #dc3545;
+    font-weight: 500;
+    padding-left: 22px;
+}
+
+/* Статус в футере */
+.status-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    background: #d4edda;
+    color: #155724;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.status-info.rejected {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status-info i {
+    font-size: 16px;
+}
+
+.registrations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 24px;
+    padding: 24px;
+}
+
+@media (max-width: 768px) {
+    .registrations-grid {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
+}
+
+.registration-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.registration-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.registration-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid #dee2e6;
+}
+
+.registration-type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.registration-type-badge.legal {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.registration-type-badge.individual {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.registration-type-badge i {
+    font-size: 14px;
+}
+
+.registration-date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #6c757d;
+}
+
+.registration-date i {
+    font-size: 12px;
+}
+
+.registration-card-body {
+    padding: 20px;
+}
+
+.registration-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #212529;
+    margin: 0 0 16px 0;
+}
+
+.registration-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #495057;
+}
+
+.info-row i {
+    width: 20px;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.company-details {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #e9ecef;
+}
+
+.company-details h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #495057;
+    margin: 0 0 12px 0;
+}
+
+.company-details h4 i {
+    color: #007656;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    font-size: 14px;
+    color: #212529;
+    word-break: break-word;
+}
+
+.registration-card-footer {
+    display: flex;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+.registration-card-footer .btn {
+    flex: 1;
+    justify-content: center;
+}
+
+/* Анимация удаления карточки */
+.registration-card {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 64px;
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #495057;
+    margin: 0 0 8px 0;
+}
+
+.empty-state p {
+    font-size: 16px;
+    color: #6c757d;
+    margin: 0;
+}

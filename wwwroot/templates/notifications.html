@@ -1,0 +1,18 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title" id="notifications-title"></h1>
+        <p class="page-subtitle" id="notifications-subtitle"></p>
+    </div>
+    <div class="flex gap-3">
+        <button class="btn btn-outline" onclick="app.nav('dashboard')">
+            <i class="fas fa-arrow-left"></i>
+            <span id="notifications-back-label"></span>
+        </button>
+        <button class="btn btn-primary" id="notifications-refresh-btn" onclick="app.refreshNotifications()" style="display:none">
+            <i class="fas fa-sync"></i>
+            <span id="notifications-refresh-label"></span>
+        </button>
+    </div>
+</div>
+
+<div id="notifications-body"></div>

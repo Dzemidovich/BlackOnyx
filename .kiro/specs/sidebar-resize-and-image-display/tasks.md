@@ -1,0 +1,92 @@
+# Implementation Plan
+
+- [x] 1. Write bug condition exploration test
+  - **Property 1: Bug Condition** - Sidebar Banner Display Defects
+  - **CRITICAL**: This test MUST FAIL on unfixed code - failure confirms the bug exists
+  - **DO NOT attempt to fix the test or the code when it fails**
+  - **NOTE**: This test encodes the expected behavior - it will validate the fix when it passes after implementation
+  - **GOAL**: Surface counterexamples that demonstrate the bugs exist
+  - **Scoped PBT Approach**: For deterministic bugs, scope the property to the concrete failing cases to ensure reproducibility
+  - Test that sidebar banner on desktop (viewport >= 768px) displays:
+    - Images with white background instead of transparent (Bug 1.1)
+    - Oversized banner with height 80px instead of 40px (Bug 1.2)
+    - Fake description instead of real product.name from database (Bug 1.3)
+    - Hardcoded colors instead of CSS variables (Bug 1.4)
+    - Products from wrong categories instead of "Электроинструмент" or "Компрессоры" (Bug 1.5)
+  - Run test on UNFIXED code
+  - **EXPECTED OUTCOME**: Test FAILS (this is correct - it proves the bugs exist)
+  - Document counterexamples found to understand root cause
+  - Mark task complete when test is written, run, and failure is documented
+  - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5_
+
+- [x] 2. Write preservation property tests (BEFORE implementing fix)
+  - **Property 2: Preservation** - Sidebar Navigation and Interaction
+  - **IMPORTANT**: Follow observation-first methodology
+  - Observe behavior on UNFIXED code for non-buggy inputs:
+    - Hover on sidebar expands it and shows navigation text
+    - Click on navigation items navigates to correct pages
+    - Role-based menu display works correctly (Admin, Manager, Customer)
+    - Click on banner opens product detail page
+    - Mobile behavior hides desktop sidebar (viewport < 768px)
+    - Logo and navigation elements work correctly
+  - Write property-based tests capturing observed behavior patterns from Preservation Requirements
+  - Property-based testing generates many test cases for stronger guarantees
+  - Run tests on UNFIXED code
+  - **EXPECTED OUTCOME**: Tests PASS (this confirms baseline behavior to preserve)
+  - Mark task complete when tests are written, run, and passing on unfixed code
+  - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6_
+
+- [ ] 3. Fix sidebar banner display issues
+
+  - [x] 3.1 Fix CSS styles in layout.css
+    - Change `.sidebar-banner-image` background from `white` to `transparent`
+    - Reduce `.sidebar-banner-image` height from `80px` to `40px`
+    - Adjust padding in `.sidebar-banner` from `12px 8px` to `6px 4px` for compactness
+    - Replace all hardcoded colors with CSS variables (`var(--primary)`, `var(--text-secondary)`, `var(--border)`)
+    - _Bug_Condition: isBugCondition(context) where context.viewport.width >= 768 AND sidebar-banner EXISTS AND (hasWhiteBackground OR isOversized OR hasInconsistentStyles)_
+    - _Expected_Behavior: hasTransparentBackground(result.imageElement) AND result.imageElement.height === 40 AND usesCSS Variables(result.styles)_
+    - _Preservation: Sidebar navigation, hover expansion, role-based menu, mobile behavior remain unchanged_
+    - _Requirements: 2.1, 2.2, 2.4_
+
+  - [x] 3.2 Fix JavaScript product data and filtering
+    - Find the function that renders sidebar banner (likely in `wwwroot/js/app.js` or module)
+    - Replace static text in `.sidebar-banner-subtitle` with real product data: `${product.name}`
+    - Add product filtering: `const eligibleProducts = app.products.filter(p => p.categoryName === 'Электроинструмент' || p.categoryName === 'Компрессоры')`
+    - Select random product from `eligibleProducts` instead of all `app.products`
+    - Add fallback: if `eligibleProducts.length === 0`, use any product or hide banner
+    - _Bug_Condition: isBugCondition(context) where hasFakeDescription(context) OR isWrongProductSelected(context.productData)_
+    - _Expected_Behavior: result.descriptionText === renderContext.product.name AND result.product.categoryName IN ['Электроинструмент', 'Компрессоры']_
+    - _Preservation: Banner click navigation, product detail page opening remain unchanged_
+    - _Requirements: 2.3, 2.5_
+
+  - [x] 3.3 Verify bug condition exploration test now passes
+    - **Property 1: Expected Behavior** - Sidebar Banner Display Correctness
+    - **IMPORTANT**: Re-run the SAME test from task 1 - do NOT write a new test
+    - The test from task 1 encodes the expected behavior
+    - When this test passes, it confirms the expected behavior is satisfied
+    - Run bug condition exploration test from step 1
+    - **EXPECTED OUTCOME**: Test PASSES (confirms bugs are fixed)
+    - Verify all 5 fixes:
+      - Images have transparent background
+      - Banner height is 40px
+      - Description shows real product.name
+      - Styles use CSS variables
+      - Products are from correct categories
+    - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
+
+  - [x] 3.4 Verify preservation tests still pass
+    - **Property 2: Preservation** - Sidebar Navigation and Interaction
+    - **IMPORTANT**: Re-run the SAME tests from task 2 - do NOT write new tests
+    - Run preservation property tests from step 2
+    - **EXPECTED OUTCOME**: Tests PASS (confirms no regressions)
+    - Confirm all preserved behaviors:
+      - Hover expansion works
+      - Navigation clicks work
+      - Role-based menu display works
+      - Banner click opens product page
+      - Mobile behavior unchanged
+      - Logo and navigation work correctly
+    - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6_
+
+- [x] 4. Checkpoint - Ensure all tests pass
+  - Ensure all tests pass, ask the user if questions arise.

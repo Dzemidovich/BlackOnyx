@@ -1,0 +1,119 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Отчеты по продажам</h1>
+        <p class="page-subtitle">Аналитика и статистика заказов</p>
+    </div>
+    <div class="flex gap-2">
+        <button class="btn btn-primary" id="export-csv-btn">
+            <i class="fas fa-download"></i> Экспорт CSV
+        </button>
+    </div>
+</div>
+
+<div class="reports-date-range">
+    <div class="form-group">
+        <label for="start-date">Дата начала:</label>
+        <input type="date" id="start-date" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="end-date">Дата окончания:</label>
+        <input type="date" id="end-date" class="form-control">
+    </div>
+    <button class="btn btn-secondary" id="apply-date-range">Применить</button>
+    <button class="btn btn-outline" id="reset-date-range">Сбросить</button>
+</div>
+
+<div class="reports-summary">
+    <div class="summary-card">
+        <div class="summary-icon revenue">
+            <i class="fas fa-dollar-sign"></i>
+        </div>
+        <div class="summary-content">
+            <div class="summary-label">Общая выручка</div>
+            <div class="summary-value" id="total-revenue">0 BYN</div>
+        </div>
+    </div>
+    
+    <div class="summary-card">
+        <div class="summary-icon orders">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="summary-content">
+            <div class="summary-label">Количество заказов</div>
+            <div class="summary-value" id="order-count">0</div>
+            <div class="summary-detail" id="completed-count">Завершено: 0</div>
+        </div>
+    </div>
+    
+    <div class="summary-card">
+        <div class="summary-icon average">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="summary-content">
+            <div class="summary-label">Средний чек</div>
+            <div class="summary-value" id="average-order">0 BYN</div>
+        </div>
+    </div>
+    
+    <div class="summary-card">
+        <div class="summary-icon product">
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="summary-content">
+            <div class="summary-label">Топ товар</div>
+            <div class="summary-value" id="top-product">-</div>
+            <div class="summary-detail" id="top-product-stats">-</div>
+        </div>
+    </div>
+</div>
+
+<div class="reports-section">
+    <h2 class="section-title">Детали заказов</h2>
+    
+    <div class="table-controls">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-orders" placeholder="Поиск по клиенту или email...">
+        </div>
+        <div class="table-actions">
+            <select id="sort-by" class="form-select">
+                <option value="date-desc">Дата (новые)</option>
+                <option value="date-asc">Дата (старые)</option>
+                <option value="amount-desc">Сумма (больше)</option>
+                <option value="amount-asc">Сумма (меньше)</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="table-responsive">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Дата</th>
+                    <th>Клиент</th>
+                    <th>Тип</th>
+                    <th>Товаров</th>
+                    <th>Сумма</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody id="orders-table-body">
+                <tr>
+                    <td colspan="7" class="text-center">Загрузка данных...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="pagination" id="pagination">
+        <!-- Pagination will be inserted here -->
+    </div>
+</div>
+
+<div class="reports-section">
+    <h2 class="section-title">Топ товары</h2>
+    <div id="top-products-list" class="top-products-grid">
+        <div class="loading-message">Загрузка данных...</div>
+    </div>
+</div>

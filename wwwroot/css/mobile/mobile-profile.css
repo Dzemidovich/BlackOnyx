@@ -1,0 +1,106 @@
+/* ===================================================
+   MOBILE PROFILE STYLES
+   Адаптация профиля пользователя для мобильных устройств
+   =================================================== */
+
+/* Планшеты */
+@media (max-width: 1023px) {
+    .profile-modern {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .profile-sidebar {
+        position: static !important;
+        padding: 20px !important;
+    }
+
+    .profile-user-info {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-align: left;
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+    }
+
+    .profile-avatar-circle {
+        margin: 0;
+        flex-shrink: 0;
+        width: 56px !important;
+        height: 56px !important;
+        font-size: 1.5rem !important;
+    }
+
+    .profile-nav {
+        flex-direction: row !important;
+        overflow-x: auto;
+        gap: 8px !important;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .profile-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .profile-nav-item {
+        white-space: nowrap;
+        flex-shrink: 0;
+        padding: 8px 16px !important;
+        font-size: 0.875rem !important;
+    }
+
+    .profile-logout-btn {
+        margin-top: 12px;
+    }
+}
+
+/* Телефоны */
+@media (max-width: 767px) {
+    .profile-content {
+        padding: 20px 16px !important;
+        min-height: auto !important;
+    }
+
+    .profile-section-title {
+        font-size: 1.4rem !important;
+    }
+
+    .profile-section-header {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 20px !important;
+    }
+
+    .profile-form-card {
+        max-width: 100% !important;
+    }
+
+    .profile-form-actions {
+        margin-top: 20px !important;
+        padding-top: 16px !important;
+    }
+
+    .profile-btn-primary {
+        width: 100%;
+        padding: 14px !important;
+    }
+
+    .profile-order-header {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .profile-order-footer {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+
+    .profile-order-view {
+        text-align: center;
+        padding: 12px !important;
+    }
+}

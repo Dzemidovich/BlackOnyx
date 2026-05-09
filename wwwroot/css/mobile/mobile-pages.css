@@ -1,0 +1,33 @@
+/* ===================================================
+   MOBILE PAGES STYLES
+   Адаптация страниц аналитики и других страниц
+   =================================================== */
+
+@media (max-width: 767px) {
+    /* Analytics page */
+    canvas {
+        max-width: 100% !important;
+    }
+
+    .analytics-grid,
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    .stat-card-value {
+        font-size: 1.5rem !important;
+    }
+
+    /* Import page */
+    .import-file-label {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px !important;
+    }
+
+    .import-progress-info {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

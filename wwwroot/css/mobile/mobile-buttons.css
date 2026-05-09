@@ -1,0 +1,60 @@
+/* ===================================================
+   MOBILE BUTTONS STYLES
+   Адаптация кнопок для мобильных устройств
+   =================================================== */
+
+@media (max-width: 767px) {
+    .btn {
+        min-height: 44px !important;
+        padding: 10px 16px !important;
+        font-size: 0.9rem;
+    }
+
+    .btn-sm {
+        min-height: 36px !important;
+        padding: 6px 12px !important;
+    }
+
+    .btn-lg {
+        min-height: 52px !important;
+        padding: 14px 24px !important;
+    }
+
+    /* Header icon buttons */
+    .header-icon-btn {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px;
+    }
+
+    /* Modal close buttons */
+    .modal-close,
+    .filters-close {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px;
+    }
+
+    /* Cart buttons */
+    .cart-qty-btn {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    .cart-delete-btn {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    /* Filter buttons */
+    .filters-close {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    /* Profile buttons */
+    .profile-btn-primary {
+        width: 100%;
+        padding: 14px !important;
+    }
+}

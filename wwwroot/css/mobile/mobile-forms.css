@@ -1,0 +1,128 @@
+/* ===================================================
+   MOBILE FORMS STYLES
+   Адаптация форм для мобильных устройств
+   =================================================== */
+
+@media (max-width: 767px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="search"],
+    input[type="url"],
+    select,
+    textarea,
+    .form-input,
+    .form-select,
+    .form-control {
+        min-height: 48px !important;
+        font-size: 16px !important;
+        padding: 12px 16px !important;
+    }
+
+    textarea,
+    textarea.form-input,
+    textarea.form-control {
+        min-height: 80px !important;
+    }
+
+    .form-group {
+        margin-bottom: 16px !important;
+    }
+
+    .form-label,
+    .form-group label {
+        font-size: 0.875rem;
+        margin-bottom: 6px !important;
+    }
+
+    #header-search {
+        font-size: 16px !important;
+    }
+
+    #filter-search,
+    #filter-min-price,
+    #filter-max-price,
+    #filter-category {
+        min-height: 44px !important;
+        font-size: 16px !important;
+    }
+}
+
+/* ===== REGISTER_B2B.HTML ADDITIONAL STYLES ===== */
+
+@media (max-width: 767px) {
+    .registration-form-container {
+        padding: 24px 16px !important;
+        margin: 16px !important;
+    }
+
+    .registration-header {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .registration-logo {
+        width: 56px !important;
+        height: 56px !important;
+    }
+
+    .registration-title {
+        font-size: 1.5rem !important;
+    }
+
+    .registration-form .form-row {
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+    }
+
+    .registration-form .form-group {
+        margin-bottom: 16px !important;
+    }
+
+    .registration-form .form-input,
+    .registration-form .form-select {
+        min-height: 48px !important;
+    }
+
+    .form-check {
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+    }
+
+    .form-check input[type="checkbox"] {
+        margin-top: 2px;
+    }
+
+    .registration-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .registration-actions .btn {
+        width: 100%;
+    }
+
+    .registration-links {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .registration-info-panel {
+        display: none !important;
+    }
+}
+
+@media (max-width: 479px) {
+    .registration-form-container {
+        margin: 8px !important;
+        padding: 16px 12px !important;
+    }
+
+    .registration-title {
+        font-size: 1.25rem !important;
+    }
+}

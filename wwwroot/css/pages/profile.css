@@ -1,0 +1,120 @@
+/* Loyalty Program Styles */
+.loyalty-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    padding: 24px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.loyalty-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.loyalty-discount,
+.loyalty-total {
+    text-align: center;
+    flex: 1;
+}
+
+.loyalty-discount-label,
+.loyalty-total-label {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.loyalty-discount-value {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.loyalty-total-value {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.loyalty-progress-section {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.loyalty-progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.loyalty-progress-bar {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.loyalty-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+    border-radius: 6px;
+    transition: width 0.5s ease;
+}
+
+.loyalty-progress-footer {
+    text-align: center;
+    font-size: 14px;
+    color: #ffd700;
+}
+
+.loyalty-max-level {
+    background: rgba(255, 215, 0, 0.2);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    border: 2px solid #ffd700;
+}
+
+.loyalty-max-level i {
+    font-size: 48px;
+    color: #ffd700;
+    margin-bottom: 12px;
+}
+
+.loyalty-max-level p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.loyalty-thresholds {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.loyalty-thresholds h3 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+}
+
+.loyalty-threshold-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.loyalty-threshold-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.loyalty-threshold-item i {
+    color: #ffd700;
+}

@@ -1,0 +1,181 @@
+/* ===================================================
+   MOBILE GLOBAL STYLES — BLACK ONYX
+   Глобальные исправления для мобильных устройств
+   Брейкпоинты:
+     xs: max-width: 479px  — маленькие телефоны
+     sm: max-width: 767px  — телефоны
+     md: max-width: 1023px — планшеты
+   =================================================== */
+
+/* Предотвращаем горизонтальный скролл */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Отключаем hover-эффекты на touch-устройствах */
+@media (hover: none) {
+    .product-card:hover {
+        transform: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    
+    .category-card:hover {
+        transform: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+    
+    .nav-item:hover {
+        background: transparent;
+    }
+}
+
+/* ===== PAGE HEADER ===== */
+
+@media (max-width: 767px) {
+    .page-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+        margin-bottom: 16px !important;
+    }
+
+    .page-header .btn,
+    .page-header button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .page-title {
+        font-size: 1.4rem !important;
+    }
+}
+
+/* ===== ПОИСК ===== */
+
+@media (max-width: 767px) {
+    .search-results-dropdown {
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 0 0 12px 12px !important;
+    }
+}
+
+/* ===== ПАГИНАЦИЯ ===== */
+
+@media (max-width: 767px) {
+    .pagination {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .pagination-btn {
+        min-width: 44px !important;
+        min-height: 44px !important;
+    }
+}
+
+/* ===== SCROLL TO TOP ===== */
+
+@media (max-width: 767px) {
+    .scroll-to-top {
+        bottom: 80px !important;
+        right: 16px !important;
+        width: 44px !important;
+        height: 44px !important;
+    }
+}
+
+/* ===== УВЕДОМЛЕНИЯ ===== */
+
+@media (max-width: 767px) {
+    .notifications-panel {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 0 !important;
+        z-index: 2000 !important;
+    }
+}
+
+/* ===== ИЗБРАННОЕ ===== */
+
+@media (max-width: 767px) {
+    .favorites-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        padding: 12px !important;
+    }
+}
+
+@media (max-width: 479px) {
+    .favorites-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ===== СТРАНИЦА СРАВНЕНИЯ ===== */
+
+@media (max-width: 767px) {
+    .comparison-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .comparison-table table {
+        min-width: 500px;
+    }
+}
+
+/* ===== РЕГИСТРАЦИЯ B2B ===== */
+
+@media (max-width: 767px) {
+    .register-container,
+    .registration-form-container {
+        padding: 24px 16px !important;
+        margin: 16px !important;
+        border-radius: 16px !important;
+    }
+
+    .register-grid,
+    .form-row {
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+    }
+}
+
+/* ===== HEADER ===== */
+
+@media (max-width: 479px) {
+    .header-logo-main span {
+        display: none !important;
+    }
+
+    .search-bar-main {
+        max-width: 100% !important;
+    }
+
+    .search-btn-main {
+        display: none !important;
+    }
+
+    .header-icon-btn {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .header-right {
+        gap: 4px !important;
+    }
+}

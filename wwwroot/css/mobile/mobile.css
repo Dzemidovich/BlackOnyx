@@ -1,0 +1,1131 @@
+/* ============================================================
+   MOBILE STYLES — BLACK ONYX (БОКОВОЕ МЕНЮ)
+   Версия: 12.0 - Боковое меню с кнопкой в header
+   ============================================================ */
+
+/* ----- БАЗОВЫЙ СБРОС ДЛЯ МОБИЛЬНЫХ ----- */
+@media (max-width: 767px) {
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+
+    .desktop-only { display: none !important; }
+    .mobile-only { display: block !important; }
+
+    /* Основной контейнер */
+    .app-container,
+    .main,
+    .content-area {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .content-area {
+        padding-top: 12px !important;
+        padding-bottom: 20px !important;
+    }
+    
+    /* Скрываем десктопный сайдбар */
+    .sidebar {
+        display: none !important;
+    }
+}
+
+/* ----- ФИКСИРОВАННЫЙ HEADER ----- */
+@media (max-width: 767px) {
+    .header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        z-index: 1001 !important;
+        padding: 8px 12px !important;
+        min-height: 56px !important;
+        background: var(--bg-card) !important;
+        border-bottom: 1px solid var(--border) !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .header-left { 
+        gap: 8px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    /* Скрываем логотип BLACK ONYX на мобильных */
+    .header-logo-main {
+        display: none !important;
+    }
+    
+    .breadcrumb { display: none !important; }
+    .header-center { display: none !important; }
+    .header-contact { display: none !important; }
+    .header-right { gap: 4px !important; }
+    
+    .header-icon-btn {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        padding: 0 !important;
+    }
+
+    /* Отступ для контента под header'ом */
+    .content-area,
+    .main-content {
+        margin-top: 56px !important;
+    }
+}
+
+/* ----- MOBILE HAMBURGER BUTTON ----- */
+@media (max-width: 767px) {
+    .mobile-hamburger-btn {
+        display: flex !important;
+        width: 40px !important;
+        height: 40px !important;
+        background: var(--primary) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.2rem !important;
+        cursor: pointer !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+        transition: all 0.2s !important;
+        flex-shrink: 0 !important;
+    }
+
+    .mobile-hamburger-btn:active {
+        transform: scale(0.95) !important;
+    }
+}
+
+/* Скрываем кнопку на десктопе */
+@media (min-width: 768px) {
+    .mobile-hamburger-btn {
+        display: none !important;
+    }
+}
+
+/* ----- MOBILE SIDEBAR MENU ----- */
+@media (max-width: 767px) {
+    .mobile-sidebar-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3000;
+    }
+
+    .mobile-sidebar-menu.active {
+        display: block;
+    }
+
+    .mobile-sidebar-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+    }
+
+    .mobile-sidebar-panel {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 280px;
+        max-width: 80%;
+        background: var(--bg-card);
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .mobile-sidebar-menu.active .mobile-sidebar-panel {
+        transform: translateX(0);
+    }
+
+    .mobile-sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border);
+        background: var(--primary-gradient);
+        color: white;
+    }
+
+    .mobile-sidebar-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.125rem;
+        font-weight: 700;
+    }
+
+    .mobile-sidebar-logo i {
+        font-size: 1.3rem;
+    }
+
+    .mobile-sidebar-close {
+        width: 36px;
+        height: 36px;
+        border: none;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        color: white;
+        font-size: 1.25rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+
+    .mobile-sidebar-close:active {
+        transform: scale(0.95);
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .mobile-sidebar-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 12px;
+/* ----- ТАБЛИЦЫ И ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ (ИСПРАВЛЕНО) ----- */
+@media (max-width: 767px) {
+    .table-container {
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        margin: 0 !important;   /* убран -16px */
+        padding: 0 !important;
+        border: 1px solid var(--border) !important;
+        border-radius: var(--radius-md) !important;
+    }
+
+    table, .data-table {
+        min-width: 600px !important;
+        font-size: 0.875rem !important;
+        margin: 0 !important;
+    }
+
+    table th, table td {
+        padding: 8px 12px !important;
+        white-space: nowrap !important;
+    }
+
+    /* Кнопки действий */
+    .table-actions {
+        display: flex !important;
+        gap: 4px !important;
+        flex-wrap: nowrap !important;
+    }
+    .table-actions .btn {
+        padding: 6px 8px !important;
+        font-size: 0.75rem !important;
+        min-width: auto !important;
+    }
+    .table-actions .btn span { display: none !important; }
+    .table-actions .btn i { margin: 0 !important; }
+    
+    /* Улучшенные кнопки действий для админки */
+    .flex.gap-1 {
+        display: flex !important;
+        gap: 6px !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    .flex.gap-1 .btn {
+        padding: 6px 10px !important;
+        font-size: 0.75rem !important;
+        min-width: 36px !important;
+        min-height: 36px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .flex.gap-1 .btn i {
+        margin: 0 !important;
+        font-size: 0.9rem !important;
+    }
+}       color: white;
+        font-size: 0.7rem;
+        padding: 2px 6px;
+        border-radius: 12px;
+        min-width: 20px;
+        text-align: center;
+    }
+
+    .mobile-sidebar-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 12px 0;
+    }
+
+    .mobile-sidebar-section-title {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text-tertiary);
+        padding: 12px 16px 8px;
+        letter-spacing: 0.5px;
+    }
+}
+
+/* ----- ФИЛЬТРЫ И ПОИСК (ИСПРАВЛЕНО) ----- */
+@media (max-width: 767px) {
+    .filters-bar {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        padding: 12px 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Строка поиска */
+    .filters-bar input[type="search"],
+    .filters-bar input[type="text"],
+    .search-box input,
+    .form-input[type="search"] {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: 44px !important;
+        font-size: 15px !important;
+        padding: 10px 14px !important;
+        border-radius: 8px !important;
+        border: 1px solid var(--border) !important;
+        background: var(--bg-main) !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Селекты категорий и статусов */
+    .filters-bar select,
+    .filters-bar .form-select {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: 44px !important;
+        font-size: 15px !important;
+        padding: 10px 14px !important;
+        border-radius: 8px !important;
+        border: 1px solid var(--border) !important;
+        background: var(--bg-main) !important;
+        box-sizing: border-box !important;
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    /* Кнопка показать количество */
+    .filters-bar .btn,
+    .filters-bar button {
+        width: 100% !important;
+        height: 44px !important;
+        justify-content: center !important;
+        font-size: 15px !important;
+        padding: 10px 16px !important;
+        border-radius: 8px !important;
+    }
+}
+
+/* ----- ТАБЛИЦЫ (ИСПРАВЛЕНО) ----- */
+@media (max-width: 767px) {
+    .table-container {
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 1px solid var(--border) !important;
+        border-radius: 8px !important;
+    }
+
+    table, .data-table {
+        min-width: 600px !important;
+        font-size: 0.85rem !important;
+        margin: 0 !important;
+    }
+
+    table th, table td {
+        padding: 10px 12px !important;
+        white-space: nowrap !important;
+    }
+
+    /* Кнопки действий (УМЕНЬШЕНЫ) */
+    .table-actions {
+        display: flex !important;
+        gap: 6px !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    .table-actions .btn {
+        padding: 6px 10px !important;
+        font-size: 0.75rem !important;
+        min-width: auto !important;
+        min-height: 32px !important;
+        height: 32px !important;
+    }
+    
+    .table-actions .btn span { 
+        display: none !important; 
+    }
+    
+    .table-actions .btn i { 
+        margin: 0 !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* ----- ПАГИНАЦИЯ (ИСПРАВЛЕНО) ----- */
+@media (max-width: 767px) {
+    .pagination {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        padding: 16px 0 !important;
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+
+    .pagination-btn {
+        min-width: 38px !important;
+        min-height: 38px !important;
+        padding: 8px !important;
+        font-size: 0.85rem !important;
+    }
+
+    .pagination-info {
+        width: 100% !important;
+        text-align: center !important;
+        margin-bottom: 8px !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+/* ----- МОДАЛЬНЫЕ ОКНА ----- */
+@media (max-width: 767px) {
+    .modal-overlay {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 2000 !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .modal {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .modal-header {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 10 !important;
+        padding: 14px 16px !important;
+        background: var(--bg-card) !important;
+        border-bottom: 1px solid var(--border) !important;
+        flex-shrink: 0 !important;
+    }
+
+    .modal-title { 
+        font-size: 1.05rem !important; 
+        margin: 0 !important; 
+    }
+    
+    .modal-close {
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        padding: 0 !important;
+    }
+
+    .modal-body {
+        flex: 1 !important;
+        overflow-y: auto !important;
+        padding: 16px !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    .modal-footer {
+        position: sticky !important;
+        bottom: 0 !important;
+        z-index: 10 !important;
+        padding: 12px 16px !important;
+        background: var(--bg-card) !important;
+        border-top: 1px solid var(--border) !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+
+    .modal-footer .btn {
+        width: 100% !important;
+        justify-content: center !important;
+        min-height: 44px !important;
+    }
+}
+
+/* ----- ФОРМЫ ----- */
+@media (max-width: 767px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="search"],
+    input[type="url"],
+    select,
+    textarea,
+    .form-input,
+    .form-select,
+    .form-control {
+        min-height: 44px !important;
+        font-size: 15px !important;
+        padding: 10px 14px !important;
+        border-radius: 8px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    textarea { min-height: 100px !important; }
+    .form-group { margin-bottom: 14px !important; }
+    .form-label {
+        font-size: 0.9rem !important;
+        margin-bottom: 6px !important;
+        display: block !important;
+    }
+}
+
+/* ----- КНОПКИ ----- */
+@media (max-width: 767px) {
+    .btn {
+        min-height: 44px !important;
+        min-width: 44px !important;
+        padding: 12px 16px !important;
+        font-size: 0.95rem !important;
+        border-radius: 8px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+/* ----- MOBILE MENU BADGE ----- */
+.mobile-menu-badge {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    min-width: 20px;
+    height: 20px;
+/* ----- ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ (XS) ----- */
+@media (max-width: 479px) {
+    .products-grid,
+    .favorites-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .content-area {
+        padding: 8px !important;
+    }
+
+    table {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* ===== ORDERS PAGE MOBILE ADAPTATION ===== */
+@media (max-width: 767px) {
+    /* Show mobile-only elements */
+    .mobile-only {
+        display: block !important;
+    }
+    
+    /* Hide desktop-only elements */
+    .desktop-only {
+        display: none !important;
+    }
+    
+    /* Compact metrics grid */
+    .compact-metrics {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .compact-metric {
+        background: var(--bg-card) !important;
+        border: 1px solid var(--border) !important;
+        border-radius: 12px !important;
+        padding: 14px !important;
+    }
+    
+    .compact-metric-label {
+        font-size: 0.75rem !important;
+        color: var(--text-tertiary) !important;
+        font-weight: 500 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        margin-bottom: 6px !important;
+    }
+    
+    .compact-metric-value {
+        font-size: 1.75rem !important;
+        font-weight: 800 !important;
+        color: var(--text-main) !important;
+        line-height: 1 !important;
+        margin-bottom: 4px !important;
+    }
+    
+    .compact-metric-subtitle {
+        font-size: 0.7rem !important;
+        color: var(--text-secondary) !important;
+        font-weight: 500 !important;
+    }
+    
+    /* Order mobile cards */
+    .orders-compact-list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        padding: 0 !important;
+    }
+    
+    .order-row {
+        background: var(--bg-card) !important;
+        border: 1px solid var(--border) !important;
+        border-radius: 14px !important;
+        padding: 14px 16px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        transition: all 0.2s !important;
+    }
+    
+    .order-row:active {
+        transform: scale(0.98) !important;
+        background: var(--bg-page) !important;
+    }
+    
+    .order-mobile-header {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: flex-start !important;
+        padding-bottom: 10px !important;
+        border-bottom: 1px solid var(--border-light) !important;
+    }
+    
+    .order-mobile-id {
+        font-size: 1.1rem !important;
+        font-weight: 800 !important;
+        color: var(--text-main) !important;
+        margin-bottom: 4px !important;
+    }
+    
+    .order-mobile-date {
+        font-size: 0.8rem !important;
+        color: var(--text-secondary) !important;
+        font-weight: 500 !important;
+    }
+    
+    .order-mobile-amount {
+        display: inline-flex !important;
+        align-items: center !important;
+        padding: 6px 14px !important;
+        background: rgba(0, 118, 86, 0.1) !important;
+        border: 1.5px solid var(--primary) !important;
+        border-radius: 20px !important;
+        font-size: 0.85rem !important;
+        font-weight: 700 !important;
+        color: var(--primary) !important;
+        white-space: nowrap !important;
+    }
+    
+    .order-mobile-info {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 4px !important;
+    }
+    
+    .order-mobile-user {
+        font-size: 0.9rem !important;
+        font-weight: 600 !important;
+        color: var(--text-main) !important;
+    }
+    
+    .order-mobile-email {
+        font-size: 0.8rem !important;
+        color: var(--text-secondary) !important;
+    }
+    
+    .order-mobile-items {
+        font-size: 0.8rem !important;
+        color: var(--text-tertiary) !important;
+    }
+    
+    .order-mobile-actions {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding-top: 10px !important;
+        border-top: 1px solid var(--border-light) !important;
+    }
+    
+    .order-mobile-status {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        padding: 6px 12px !important;
+        border-radius: 16px !important;
+        font-size: 0.8rem !important;
+        font-weight: 600 !important;
+    }
+    
+    .order-mobile-buttons {
+        display: flex !important;
+        gap: 8px !important;
+    }
+    
+    .order-mobile-btn {
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 8px !important;
+        border: 1px solid var(--border) !important;
+        background: var(--bg-card) !important;
+        color: var(--text-secondary) !important;
+        cursor: pointer !important;
+        transition: all 0.2s !important;
+        padding: 0 !important;
+    }
+    
+    .order-mobile-btn:active {
+        transform: scale(0.95) !important;
+        background: var(--bg-page) !important;
+    }
+    
+    .order-mobile-btn i {
+        font-size: 1rem !important;
+    }
+}   *:hover { transition: none !important; }
+    .product-card:active { transform: scale(0.98) !important; }
+    .btn:active { transform: scale(0.97) !important; }
+}   right: 0;
+    bottom: 0;
+    z-index: 9998;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.mobile-sidebar-menu.active {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.mobile-sidebar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.mobile-sidebar-panel {
+    position: absolute;
+    top: 0;
+    left: -280px;
+    bottom: 0;
+    width: 280px;
+    background: var(--bg-card, #ffffff);
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.mobile-sidebar-menu.active .mobile-sidebar-panel {
+    left: 0;
+}
+
+.mobile-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid var(--border, #e5e7eb);
+    background: var(--primary, #007656);
+    color: white;
+    flex-shrink: 0;
+}
+
+.mobile-sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.mobile-sidebar-logo i {
+    font-size: 1.25rem;
+}
+
+.mobile-sidebar-close {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    transition: background 0.15s;
+}
+
+.mobile-sidebar-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.mobile-sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    color: var(--text-secondary, #6b7280);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-bottom: 4px;
+    position: relative;
+}
+
+.mobile-sidebar-item:hover {
+    background: var(--bg-page, #f9fafb);
+    color: var(--text-main, #111827);
+}
+
+.mobile-sidebar-item.active {
+    background: var(--primary, #007656);
+    color: white;
+}
+
+.mobile-sidebar-item i {
+    font-size: 1.125rem;
+    width: 20px;
+    text-align: center;
+}
+
+.mobile-sidebar-item .badge {
+    position: absolute;
+    right: 12px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: var(--danger, #dc2626);
+    color: white;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-sidebar-divider {
+    height: 1px;
+    background: var(--border, #e5e7eb);
+    margin: 8px 0;
+}
+
+/* Hide hamburger button on desktop */
+@media (min-width: 768px) {
+    .mobile-hamburger-btn {
+        display: none !important;
+    }
+    
+    .mobile-sidebar-menu {
+        display: none !important;
+    }
+}
+
+/* ----- TOUCH-ОПТИМИЗАЦИЯ ----- */
+@media (hover: none) and (pointer: coarse) {
+    *:hover { transition: none !important; }
+    .product-card:active { transform: scale(0.98) !important; }
+    .btn:active { transform: scale(0.97) !important; }
+}
+
+/* ----- ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ (XS) ----- */
+@media (max-width: 479px) {
+    .products-grid,
+    .favorites-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .content-area {
+        padding: 8px !important;
+    }
+
+    table {
+        font-size: 0.8rem !important;
+    }
+}       grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    .card {
+        padding: 16px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+
+/* ----- SAFE AREA (iPhone) ----- */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    @media (max-width: 767px) {
+        .content-area {
+            margin-bottom: calc(20px + env(safe-area-inset-bottom)) !important;
+        }
+    }
+}
+
+/* ----- TOUCH ОПТИМИЗАЦИЯ ----- */
+@media (hover: none) and (pointer: coarse) {
+    .btn:active { 
+        transform: scale(0.97) !important; 
+    }
+}
+
+
+
+/* ----- ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ КНОПКИ ГАМБУРГЕР ----- */
+@media (max-width: 767px) {
+    .mobile-hamburger-btn {
+        position: relative !important;
+        z-index: 100 !important;
+        pointer-events: auto !important;
+        -webkit-tap-highlight-color: transparent !important;
+        touch-action: manipulation !important;
+    }
+}
+
+
+
+/* ----- MOBILE SIDEBAR MENU (HAMBURGER) ----- */
+.mobile-sidebar-menu {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 9998 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease, visibility 0s 0.3s !important;
+}
+
+.mobile-sidebar-menu.active {
+    pointer-events: all !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transition: opacity 0.3s ease, visibility 0s 0s !important;
+}
+
+.mobile-sidebar-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    z-index: 1 !important;
+}
+
+.mobile-sidebar-panel {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 280px !important;
+    background: var(--bg-card, #ffffff) !important;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15) !important;
+    z-index: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.3s ease !important;
+}
+
+.mobile-sidebar-menu.active .mobile-sidebar-panel {
+    transform: translateX(0) !important;
+}
+
+.mobile-sidebar-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 16px !important;
+    border-bottom: 1px solid var(--border, #e5e7eb) !important;
+    background: var(--primary, #007656) !important;
+    color: white !important;
+    flex-shrink: 0 !important;
+}
+
+.mobile-sidebar-logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    font-size: 1.125rem !important;
+    font-weight: 700 !important;
+}
+
+.mobile-sidebar-logo i {
+    font-size: 1.25rem !important;
+}
+
+.mobile-sidebar-close {
+    width: 36px !important;
+    height: 36px !important;
+    border: none !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.125rem !important;
+    transition: background 0.15s !important;
+}
+
+.mobile-sidebar-close:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.mobile-sidebar-content {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    padding: 8px !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+.mobile-sidebar-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 14px 16px !important;
+    border-radius: 8px !important;
+    color: var(--text-secondary, #6b7280) !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.15s !important;
+    margin-bottom: 4px !important;
+    position: relative !important;
+}
+
+.mobile-sidebar-item:hover {
+    background: var(--bg-page, #f9fafb) !important;
+    color: var(--text-main, #111827) !important;
+}
+
+.mobile-sidebar-item.active {
+    background: var(--primary, #007656) !important;
+    color: white !important;
+}
+
+.mobile-sidebar-item i {
+    font-size: 1.125rem !important;
+    width: 20px !important;
+    text-align: center !important;
+}
+
+.mobile-sidebar-item .badge {
+    position: absolute !important;
+    right: 12px !important;
+    min-width: 20px !important;
+    height: 20px !important;
+    padding: 0 6px !important;
+    background: var(--danger, #dc2626) !important;
+    color: white !important;
+    border-radius: 10px !important;
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.mobile-sidebar-divider {
+    height: 1px !important;
+    background: var(--border, #e5e7eb) !important;
+    margin: 8px 0 !important;
+}
+
+/* Скрыть кнопку на десктопе */
+@media (min-width: 768px) {
+    .mobile-hamburger-btn {
+        display: none !important;
+    }
+    
+    .mobile-sidebar-menu {
+        display: none !important;
+    }
+}

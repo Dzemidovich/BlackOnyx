@@ -1,0 +1,21 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title" id="orders-title"></h1>
+        <p class="page-subtitle" id="orders-subtitle"></p>
+    </div>
+    <div class="flex gap-2" id="orders-header-actions"></div>
+</div>
+
+<div id="orders-filters" class="orders-filter-compact" style="display:none">
+    <button class="filter-chip active" onclick="app.filterOrders('all')">
+        <span id="orders-filter-all-label"></span> <span id="orders-count-all">0</span>
+    </button>
+    <button class="filter-chip" onclick="app.filterOrders('active')">
+        <span id="orders-filter-active-label"></span> <span id="orders-count-active">0</span>
+    </button>
+    <button class="filter-chip" onclick="app.filterOrders('completed')">
+        <span id="orders-filter-completed-label"></span> <span id="orders-count-completed">0</span>
+    </button>
+</div>
+
+<div id="orders-body"></div>

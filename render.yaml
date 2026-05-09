@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: diplom-app
+    runtime: image
+    repo: https://github.com/Dzemidovich/BlackOnyx
+    plan: free

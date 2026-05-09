@@ -1,0 +1,141 @@
+/* ===================================================
+   MOBILE TABLES STYLES
+   Адаптация таблиц для мобильных устройств (админка)
+   =================================================== */
+
+@media (max-width: 767px) {
+    /* Horizontal scroll for tables */
+    .table-container {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid var(--border) !important;
+        border-radius: var(--radius-md) !important;
+    }
+
+    .data-table {
+        display: table !important;
+        min-width: 600px;
+    }
+
+    .data-table th {
+        position: sticky;
+        top: 0;
+        background: var(--bg-page);
+        z-index: 1;
+    }
+
+    /* Orders page filters - horizontal scroll */
+    .orders-filter-compact {
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 8px;
+        scrollbar-width: none;
+    }
+
+    .orders-filter-compact::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter-chip {
+        flex-shrink: 0;
+    }
+
+    /* Order rows */
+    .order-row {
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+
+    .order-amount-col {
+        margin-left: 0 !important;
+        text-align: left !important;
+    }
+
+    .order-actions-col {
+        width: 100% !important;
+    }
+
+    .order-actions-col .btn,
+    .btn-eye {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Card view for admin products table */
+    .admin-products-table .table-container {
+        overflow: visible !important;
+        border: none !important;
+    }
+
+    .admin-products-table .data-table {
+        display: none !important;
+    }
+
+    .admin-products-cards {
+        display: flex !important;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .admin-product-card-mobile {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 16px;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .admin-product-card-mobile-img {
+        width: 60px;
+        height: 60px;
+        background: var(--bg-page);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        overflow: hidden;
+    }
+
+    .admin-product-card-mobile-img img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+    }
+
+    .admin-product-card-mobile-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .admin-product-card-mobile-name {
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+        color: var(--text-main);
+    }
+
+    .admin-product-card-mobile-meta {
+        font-size: 0.8rem;
+        color: var(--text-tertiary);
+        margin-bottom: 8px;
+    }
+
+    .admin-product-card-mobile-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .admin-product-card-mobile-actions .btn {
+        flex: 1;
+        font-size: 0.8rem !important;
+        padding: 8px !important;
+        min-height: 36px !important;
+    }
+}

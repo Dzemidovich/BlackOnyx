@@ -1,0 +1,117 @@
+        /* --- FORM ELEMENTS --- */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            color: var(--text-main);
+            background: var(--bg-card);
+            transition: all var(--transition-fast);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 118, 86, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-check input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+        
+        /* Mobile form adjustments */
+        @media (max-width: 767px) {
+            .form-input,
+            .form-select,
+            .form-textarea,
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="number"],
+            input[type="tel"],
+            input[type="search"],
+            input[type="url"],
+            input[type="date"],
+            select,
+            textarea {
+                min-height: 48px !important;
+                height: 48px !important;
+                padding: 14px 16px !important;
+                font-size: 16px !important; /* предотвращает zoom на iOS */
+                -webkit-appearance: none !important;
+                appearance: none !important;
+            }
+            
+            .form-textarea,
+            textarea {
+                min-height: 80px !important;
+                height: auto !important;
+            }
+            
+            .form-label {
+                font-size: 0.9rem !important;
+                margin-bottom: 6px !important;
+            }
+            
+            .form-group {
+                margin-bottom: 16px !important;
+            }
+            
+            .form-row {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 16px !important;
+            }
+            
+            /* Чекбоксы и радио */
+            .form-check input[type="checkbox"],
+            .form-check input[type="radio"] {
+                width: 24px !important;
+                height: 24px !important;
+                min-width: 24px !important;
+                min-height: 24px !important;
+            }
+            
+            /* Select стрелка */
+            select,
+            .form-select {
+                background-position: right 12px center !important;
+                padding-right: 40px !important;
+            }
+        }
+
+

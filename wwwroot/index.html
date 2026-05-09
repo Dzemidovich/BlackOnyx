@@ -1,0 +1,2690 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BLACK ONYX | B2B Портал инструментов</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23007656' width='100' height='100' rx='20'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>B</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    
+    <!-- CSS files with manual cache-busting version -->
+    <link rel="stylesheet" href="/css/variables.css?v=1027">
+    <link rel="stylesheet" href="/css/base.css?v=1027">
+    <link rel="stylesheet" href="/css/layout.css?v=1027">
+    <link rel="stylesheet" href="/css/components/buttons.css?v=1024">
+    <link rel="stylesheet" href="/css/components/cards.css?v=1024">
+    <link rel="stylesheet" href="/css/components/tables.css?v=1024">
+    <link rel="stylesheet" href="/css/components/modals.css?v=1024">
+    <link rel="stylesheet" href="/css/components/forms.css?v=1024">
+    <link rel="stylesheet" href="/css/components/hierarchical-filters.css?v=1024">
+    <link rel="stylesheet" href="/css/pages/catalog.css?v=1024">
+    <link rel="stylesheet" href="/css/pages/cart.css?v=1024">
+    <link rel="stylesheet" href="/css/pages/orders.css?v=1032">
+    <link rel="stylesheet" href="/css/pages/admin-products.css?v=1024">
+    <link rel="stylesheet" href="/css/pages/reviews.css?v=1024">
+    <link rel="stylesheet" href="/css/pages/registrations.css?v=1024">
+    <link rel="stylesheet" href="/css/pages/admin.css?v=1032">
+    <link rel="stylesheet" href="/css/pages/analytics.css?v=1024">
+    <link rel="stylesheet" href="/css/mobile/mobile.css?v=1024">
+    
+    <!-- INLINE FIX: Order images horizontal layout and notification spacing -->
+    <style>
+        /* ===== SIDEBAR BANNER AGGRESSIVE UPDATE v1027 ===== */
+        .sidebar-banner {
+            width: 100% !important;
+            margin-top: auto !important;
+            padding: 6px !important;
+            background: linear-gradient(135deg, rgba(0, 118, 86, 0.08) 0%, rgba(0, 118, 86, 0.03) 100%) !important;
+            border-radius: 8px !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            opacity: 0 !important;
+            transform: translateY(10px) !important;
+            pointer-events: none !important;
+            border: 1px solid rgba(0, 118, 86, 0.1) !important;
+        }
+        
+        .sidebar:hover .sidebar-banner {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            pointer-events: all !important;
+        }
+        
+        .sidebar-banner:hover {
+            background: linear-gradient(135deg, rgba(0, 118, 86, 0.12) 0%, rgba(0, 118, 86, 0.06) 100%) !important;
+            box-shadow: 0 2px 8px rgba(0, 118, 86, 0.15) !important;
+            border-color: rgba(0, 118, 86, 0.2) !important;
+            transform: translateY(-2px) !important;
+        }
+        
+        .sidebar-banner-image {
+            width: 100% !important;
+            height: 50px !important;
+            background: white !important;
+            border-radius: 6px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin-bottom: 6px !important;
+            overflow: hidden !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+        }
+        
+        .sidebar-banner-image img {
+            max-width: 80% !important;
+            max-height: 80% !important;
+            object-fit: contain !important;
+        }
+        
+        .sidebar-banner-image i {
+            font-size: 1.5rem !important;
+            color: #999 !important;
+        }
+        
+        .sidebar-banner-content {
+            text-align: center !important;
+            padding: 0 2px !important;
+        }
+        
+        .sidebar-banner-badge {
+            display: inline-block !important;
+            background: #007656 !important;
+            color: white !important;
+            font-size: 0.5rem !important;
+            font-weight: 700 !important;
+            padding: 2px 6px !important;
+            border-radius: 8px !important;
+            margin-bottom: 4px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+        }
+        
+        .sidebar-banner-title {
+            font-size: 0.7rem !important;
+            font-weight: 600 !important;
+            color: #1a1a1a !important;
+            line-height: 1.2 !important;
+            margin-bottom: 3px !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+        }
+        
+        .sidebar-banner-description {
+            font-size: 0.6rem !important;
+            color: #666 !important;
+            line-height: 1.2 !important;
+            margin-bottom: 3px !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+        }
+        
+        .sidebar-banner-price {
+            font-size: 0.75rem !important;
+            font-weight: 700 !important;
+            color: #007656 !important;
+            margin-top: 3px !important;
+        }
+        
+        /* FORCE 4 COLUMNS GRID - DESKTOP, 2 COLUMNS - MOBILE */
+        .products-grid {
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important;
+            gap: 16px !important;
+            padding: 12px !important;
+        }
+        
+        @media (max-width: 479px) {
+            .products-grid {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 8px !important;
+                padding: 8px !important;
+            }
+            
+            .products-grid .product-card {
+                min-height: 360px !important;
+                min-width: 200px !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+                isolation: isolate !important;
+            }
+            
+            /* HIDE EYE BUTTON ON MOBILE - TARGET THE SPECIFIC BUTTON */
+            .product-actions .btn-outline.btn-icon:has(.fa-eye),
+            .product-actions button:has(.fa-eye) {
+                display: none !important;
+            }
+        }
+        
+        /* HOME PAGE COMPACT GRID FIX - 2 COLUMNS ON MOBILE */
+        .products-grid-compact {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+            gap: 12px !important;
+            padding: 12px !important;
+        }
+        
+        @media (max-width: 479px) {
+            .products-grid-compact {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 8px !important;
+                padding: 8px !important;
+            }
+            
+            .products-grid-compact .product-card-compact {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+                isolation: isolate !important;
+                min-height: 360px !important;
+            }
+            
+            /* HIDE EYE BUTTON ON MOBILE - HOME PAGE */
+            .product-actions .btn-outline.btn-icon:has(.fa-eye),
+            .product-actions button:has(.fa-eye) {
+                display: none !important;
+            }
+        }
+        
+        .products-grid-compact .product-card-compact {
+            min-width: 200px !important;
+        }
+        
+        /* FIX PRODUCT IMAGES INSIDE CARDS */
+        .product-img-compact {
+            height: 160px !important;
+            background: white !important;
+            border-bottom: 1px solid var(--border) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 16px !important;
+            overflow: hidden !important;
+        }
+        
+        .product-img-compact img {
+            max-width: 100% !important;
+            max-height: 100% !important;
+            object-fit: contain !important;
+        }
+        
+        /* INCREASE CARD HEIGHT TO SHOW BUTTONS */
+        .product-card-compact {
+            min-height: 320px !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        
+        .product-info-compact {
+            flex: 1 !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        
+        /* ACTION BUTTONS - SAME SIZE FOR CATALOG AND HOME PAGE */
+        .product-card-actions {
+            display: flex !important;
+            gap: 4px !important;
+            padding: 6px !important;
+            background: var(--bg-page) !important;
+        }
+        
+        .product-card-actions .btn {
+            flex: 1 !important;
+            padding: 6px 8px !important;
+            font-size: 0.75rem !important;
+            border-radius: 6px !important;
+        }
+        
+        /* HOME PAGE COMPACT BUTTONS - MATCH CATALOG SIZE */
+        .add-cart-btn-compact {
+            width: 36px !important;
+            height: 36px !important;
+            padding: 6px !important;
+            font-size: 0.9rem !important;
+        }
+        
+        .favorite-btn {
+            width: 36px !important;
+            height: 36px !important;
+            font-size: 0.9rem !important;
+        }
+        
+        /* FILTER CHIPS IN ONE ROW WITH HORIZONTAL SCROLL */
+        .filter-chips {
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 8px !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+            padding: 4px 0 !important;
+            flex-wrap: nowrap !important;
+        }
+        
+        .filter-chips::-webkit-scrollbar {
+            height: 4px !important;
+        }
+        
+        .filter-chip {
+            flex-shrink: 0 !important;
+            white-space: nowrap !important;
+        }
+        
+        /* MOBILE MENU FIX - Hide button on desktop */
+        @media (min-width: 768px) {
+            .mobile-hamburger-btn {
+                display: none !important;
+            }
+            
+            /* Hide categories button on desktop */
+            .categories-toggle-btn {
+                display: none !important;
+            }
+        }
+        
+        /* Order thumbnails - 40x40px horizontal layout */
+        .order-items-preview-list {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+        
+        /* MOBILE PRODUCT DETAIL PAGE */
+        @media (max-width: 768px) {
+            .product-detail-container {
+                padding: 0 !important;
+            }
+        }
+        
+        /* ===== ADMIN PRODUCTS TABLE FIX - TEXT WRAPPING ===== */
+        /* Allow text wrapping in category and status columns */
+        .modern-table td {
+            vertical-align: middle !important;
+        }
+        
+        /* Category column - allow wrapping */
+        .modern-table td:nth-child(5) {
+            max-width: 200px !important;
+            white-space: normal !important;
+            word-wrap: break-word !important;
+            line-height: 1.4 !important;
+        }
+        
+        /* Product name column - allow wrapping */
+        .modern-table td:nth-child(4) {
+            max-width: 300px !important;
+            white-space: normal !important;
+            word-wrap: break-word !important;
+            line-height: 1.3 !important;
+        }
+        
+        /* Status badge - allow wrapping if needed */
+        .status-badge {
+            display: inline-block !important;
+            padding: 6px 12px !important;
+            border-radius: 16px !important;
+            font-size: 0.85rem !important;
+            font-weight: 600 !important;
+            white-space: normal !important;
+            text-align: center !important;
+            line-height: 1.2 !important;
+        }
+        
+        /* Action buttons - compact and touch-friendly */
+        .modern-table .flex.gap-1 {
+            display: flex !important;
+            gap: 6px !important;
+            flex-wrap: nowrap !important;
+            justify-content: center !important;
+        }
+        
+        .modern-table .btn-sm {
+            padding: 6px 10px !important;
+            font-size: 0.85rem !important;
+            min-width: 36px !important;
+            min-height: 36px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 6px !important;
+        }
+        
+        /* Mobile adjustments for admin table */
+        @media (max-width: 767px) {
+            .modern-table td:nth-child(5) {
+                max-width: 120px !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .modern-table td:nth-child(4) {
+                max-width: 180px !important;
+                font-size: 0.85rem !important;
+            }
+            
+            .status-badge {
+                padding: 4px 8px !important;
+                font-size: 0.75rem !important;
+            }
+            
+            .modern-table .btn-sm {
+                padding: 6px !important;
+                min-width: 32px !important;
+                min-height: 32px !important;
+            }
+        }
+        
+        @media (max-width: 479px) {
+            .modern-table td:nth-child(5) {
+                max-width: 100px !important;
+                font-size: 0.75rem !important;
+            }
+            
+            .modern-table td:nth-child(4) {
+                max-width: 150px !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .modern-table .btn-sm {
+                padding: 4px !important;
+                min-width: 28px !important;
+                min-height: 28px !important;
+            }
+        }
+        
+        /* ===== CATALOG SORT BUTTONS FIX ===== */
+        /* Fix sort controls width on mobile */
+        @media (max-width: 768px) {
+            .sort-controls {
+                display: flex !important;
+                flex: 1 !important;
+                gap: 8px !important;
+                justify-content: flex-end !important;
+                align-items: center !important;
+            }
+            
+            .sort-controls select {
+                flex: 1 !important;
+                min-width: 120px !important;
+                max-width: 200px !important;
+                height: 44px !important;
+                font-size: 0.85rem !important;
+                padding: 8px 32px 8px 8px !important;
+            }
+            
+            .sort-controls .btn-icon {
+                flex-shrink: 0 !important;
+                width: 44px !important;
+                height: 44px !important;
+                padding: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+        }
+        
+        /* Desktop sort controls */
+        @media (min-width: 769px) {
+            .sort-controls {
+                display: flex !important;
+                gap: 12px !important;
+                align-items: center !important;
+            }
+            
+            .sort-controls select {
+                min-width: 180px !important;
+                height: 40px !important;
+            }
+            
+            .sort-controls .btn-icon {
+                width: 40px !important;
+                height: 40px !important;
+            }
+        }
+        
+        /* MOBILE DASHBOARD (HOME PAGE) ADAPTATION */
+        @media (max-width: 768px) {
+            .top-header-bar {
+                display: none !important;
+            }
+            
+            .dashboard-main-content {
+                padding: 0 !important;
+            }
+            
+            /* Hero Carousel Mobile */
+            .hero-carousel {
+                height: 420px !important;
+                border-radius: 16px !important;
+                margin: 12px !important;
+                margin-bottom: 16px !important;
+                overflow: hidden !important;
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) !important;
+            }
+            
+            .carousel-content-product {
+                flex-direction: column !important;
+                padding: 20px !important;
+                justify-content: flex-start !important;
+                background: transparent !important;
+            }
+            
+            .carousel-product-image {
+                width: 100% !important;
+                height: 240px !important;
+                margin-bottom: 16px !important;
+                background: transparent !important;
+                flex-shrink: 0 !important;
+            }
+            
+            .carousel-product-image img {
+                max-width: 100% !important;
+                max-height: 100% !important;
+                object-fit: contain !important;
+                filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15)) !important;
+            }
+            
+            .carousel-product-info {
+                width: 100% !important;
+                text-align: center !important;
+                flex: 1 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: flex-start !important;
+                gap: 6px !important;
+                background: rgba(255, 255, 255, 0.95) !important;
+                padding: 16px !important;
+                border-radius: 12px !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+            }
+            
+            .carousel-badge {
+                margin-bottom: 2px !important;
+                align-self: center !important;
+            }
+            
+            .carousel-product-info h2 {
+                font-size: 1.15rem !important;
+                margin: 0 !important;
+                line-height: 1.3 !important;
+                color: #1a1a1a !important;
+                font-weight: 700 !important;
+            }
+            
+            .carousel-product-info h3 {
+                font-size: 0.95rem !important;
+                margin: 0 !important;
+                line-height: 1.3 !important;
+                color: var(--primary) !important;
+                font-weight: 600 !important;
+            }
+            
+            .carousel-product-info p {
+                font-size: 0.85rem !important;
+                display: none !important;
+            }
+            
+            .carousel-product-info .btn {
+                margin-top: 6px !important;
+            }
+            
+            .carousel-btn {
+                width: 36px !important;
+                height: 36px !important;
+                font-size: 0.9rem !important;
+            }
+            
+            .carousel-btn.prev {
+                left: 8px !important;
+            }
+            
+            .carousel-btn.next {
+                right: 8px !important;
+            }
+            
+            .carousel-dots {
+                bottom: 12px !important;
+            }
+            
+            /* Dashboard Controls */
+            .dashboard-controls {
+                flex-direction: column !important;
+                gap: 12px !important;
+                padding: 12px !important;
+                margin-bottom: 0 !important;
+            }
+            
+            .filter-chips {
+                width: 100% !important;
+                justify-content: flex-start !important;
+            }
+            
+            .filter-chip {
+                font-size: 0.85rem !important;
+                padding: 8px 12px !important;
+            }
+            
+            .filter-chip i {
+                font-size: 0.9rem !important;
+            }
+            
+            .categories-toggle-btn {
+                width: 100% !important;
+                justify-content: center !important;
+                padding: 12px !important;
+                font-size: 0.95rem !important;
+            }
+            
+            /* Categories Panel Mobile */
+            .categories-panel {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                z-index: 1000 !important;
+                background: white !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                overflow-y: auto !important;
+            }
+            
+            .categories-panel-header {
+                position: sticky !important;
+                top: 0 !important;
+                background: white !important;
+                padding: 16px !important;
+                border-bottom: 1px solid var(--border) !important;
+                z-index: 10 !important;
+            }
+            
+            .categories-panel-header h3 {
+                font-size: 1.1rem !important;
+            }
+            
+            .categories-grid-panel {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+                padding: 16px !important;
+            }
+            
+            .category-card-panel {
+                padding: 16px !important;
+            }
+            
+            .category-icon-panel {
+                width: 48px !important;
+                height: 48px !important;
+                font-size: 1.5rem !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .category-name-panel {
+                font-size: 0.85rem !important;
+            }
+            
+            /* Products Section Mobile */
+            .products-section-compact {
+                padding: 0 !important;
+            }
+            
+            /* MOBILE PRODUCT DETAIL PAGE */
+            .product-detail-container {
+                padding: 0 !important;
+            }
+            
+            .product-detail-main {
+                grid-template-columns: 1fr !important;
+                gap: 0 !important;
+                margin-bottom: 16px !important;
+            }
+            
+            .product-detail-image {
+                border-radius: 0 !important;
+                padding: 16px !important;
+                min-height: 280px !important;
+            }
+            
+            .product-detail-info {
+                padding: 16px !important;
+            }
+            
+            .product-detail-header h1 {
+                font-size: 1.25rem !important;
+            }
+            
+            .product-detail-price {
+                font-size: 1.75rem !important;
+            }
+            
+            .product-detail-actions {
+                position: fixed !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                background: white !important;
+                padding: 12px 16px !important;
+                box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1) !important;
+                z-index: 100 !important;
+                display: flex !important;
+                gap: 8px !important;
+            }
+            
+            .product-detail-actions .btn {
+                flex: 1 !important;
+                padding: 14px !important;
+                font-size: 0.95rem !important;
+            }
+            
+            .product-detail-tabs {
+                margin: 0 !important;
+            }
+            
+            .product-detail-tabs .tab-buttons {
+                border-radius: 0 !important;
+                padding: 0 !important;
+                gap: 0 !important;
+                border-bottom: 2px solid var(--border) !important;
+            }
+            
+            .product-detail-tabs .tab-btn {
+                flex: 1 !important;
+                border-radius: 0 !important;
+                padding: 12px 8px !important;
+                font-size: 0.85rem !important;
+                border-bottom: 3px solid transparent !important;
+            }
+            
+            .product-detail-tabs .tab-btn.active {
+                border-bottom-color: var(--primary) !important;
+                background: transparent !important;
+            }
+            
+            .product-detail-tabs .tab-content {
+                padding: 16px !important;
+            }
+            
+            .related-products-section {
+                padding: 16px !important;
+                margin: 0 !important;
+            }
+            
+            .related-products-section h3 {
+                font-size: 1.1rem !important;
+                margin-bottom: 12px !important;
+            }
+            
+            /* Add bottom padding to avoid fixed button overlap */
+            .product-detail-container {
+                padding-bottom: 80px !important;
+            }
+        }
+        
+        /* DESKTOP DASHBOARD CAROUSEL - FULL WIDTH IMAGE */
+        @media (min-width: 769px) {
+            .hero-carousel {
+                height: 500px !important;
+                border-radius: 20px !important;
+                margin: 24px !important;
+                margin-bottom: 24px !important;
+                overflow: hidden !important;
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) !important;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+            }
+            
+            .carousel-content-product {
+                display: flex !important;
+                flex-direction: row !important;
+                height: 100% !important;
+                background: transparent !important;
+            }
+            
+            /* IMAGE ON FULL LEFT SIDE */
+            .carousel-product-image {
+                width: 50% !important;
+                height: 100% !important;
+                background: white !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                padding: 40px !important;
+                flex-shrink: 0 !important;
+            }
+            
+            .carousel-product-image img {
+                max-width: 100% !important;
+                max-height: 100% !important;
+                object-fit: contain !important;
+                filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.15)) !important;
+            }
+            
+            /* INFO ON RIGHT SIDE */
+            .carousel-product-info {
+                width: 50% !important;
+                padding: 60px 50px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                gap: 16px !important;
+                background: rgba(255, 255, 255, 0.95) !important;
+            }
+            
+            .carousel-badge {
+                display: inline-block !important;
+                padding: 8px 16px !important;
+                background: var(--primary) !important;
+                color: white !important;
+                border-radius: 20px !important;
+                font-size: 0.85rem !important;
+                font-weight: 700 !important;
+                align-self: flex-start !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .carousel-product-info h2 {
+                font-size: 2.5rem !important;
+                margin: 0 !important;
+                line-height: 1.2 !important;
+                color: #1a1a1a !important;
+                font-weight: 800 !important;
+            }
+            
+            .carousel-product-info h3 {
+                font-size: 1.5rem !important;
+                margin: 0 !important;
+                line-height: 1.3 !important;
+                color: var(--primary) !important;
+                font-weight: 600 !important;
+            }
+            
+            .carousel-product-info p {
+                font-size: 1.1rem !important;
+                line-height: 1.6 !important;
+                color: var(--text-secondary) !important;
+                margin: 8px 0 !important;
+            }
+            
+            .carousel-product-info .btn {
+                margin-top: 16px !important;
+                padding: 16px 32px !important;
+                font-size: 1.1rem !important;
+                align-self: flex-start !important;
+            }
+            
+            .carousel-btn {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 1.2rem !important;
+            }
+            
+            .carousel-btn.prev {
+                left: 20px !important;
+            }
+            
+            .carousel-btn.next {
+                right: 20px !important;
+            }
+            
+            .carousel-dots {
+                bottom: 20px !important;
+            }
+            
+            .carousel-dots .dot {
+                width: 12px !important;
+                height: 12px !important;
+            }
+        }
+            
+            .carousel-product-info h3 {
+                font-size: 0.95rem !important;
+                margin: 0 !important;
+                line-height: 1.3 !important;
+                color: var(--primary) !important;
+                font-weight: 600 !important;
+            }
+            
+            .carousel-product-info p {
+                font-size: 0.85rem !important;
+                display: none !important;
+            }
+            
+            .carousel-product-info .btn {
+                margin-top: 6px !important;
+            }
+            
+            .carousel-btn {
+                width: 36px !important;
+                height: 36px !important;
+                font-size: 0.9rem !important;
+            }
+            
+            .carousel-btn.prev {
+                left: 8px !important;
+            }
+            
+            .carousel-btn.next {
+                right: 8px !important;
+            }
+            
+            .carousel-dots {
+                bottom: 12px !important;
+            }
+            
+            /* Dashboard Controls */
+            .dashboard-controls {
+                flex-direction: column !important;
+                gap: 12px !important;
+                padding: 12px !important;
+                margin-bottom: 0 !important;
+            }
+            
+            .filter-chips {
+                width: 100% !important;
+                justify-content: flex-start !important;
+            }
+            
+            .filter-chip {
+                font-size: 0.85rem !important;
+                padding: 8px 12px !important;
+            }
+            
+            .filter-chip i {
+                font-size: 0.9rem !important;
+            }
+            
+            .categories-toggle-btn {
+                width: 100% !important;
+                justify-content: center !important;
+                padding: 12px !important;
+                font-size: 0.95rem !important;
+            }
+            
+            /* Categories Panel Mobile */
+            .categories-panel {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                z-index: 1000 !important;
+                background: white !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+                overflow-y: auto !important;
+            }
+            
+            .categories-panel-header {
+                position: sticky !important;
+                top: 0 !important;
+                background: white !important;
+                padding: 16px !important;
+                border-bottom: 1px solid var(--border) !important;
+                z-index: 10 !important;
+            }
+            
+            .categories-panel-header h3 {
+                font-size: 1.1rem !important;
+            }
+            
+            .categories-grid-panel {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+                padding: 16px !important;
+            }
+            
+            .category-card-panel {
+                padding: 16px !important;
+            }
+            
+            .category-icon-panel {
+                width: 48px !important;
+                height: 48px !important;
+                font-size: 1.5rem !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .category-name-panel {
+                font-size: 0.85rem !important;
+            }
+            
+            /* Products Section Mobile */
+            .products-section-compact {
+                padding: 0 !important;
+            }
+        
+        
+        @media (max-width: 479px) {
+            .hero-carousel {
+                height: 400px !important;
+                margin: 8px !important;
+            }
+            
+            .carousel-content-product {
+                padding: 16px !important;
+            }
+            
+            .carousel-product-image {
+                height: 220px !important;
+                margin-bottom: 14px !important;
+            }
+            
+            .carousel-product-info {
+                padding: 14px !important;
+            }
+            
+            .carousel-product-info h2 {
+                font-size: 1.05rem !important;
+            }
+            
+            .carousel-product-info h3 {
+                font-size: 0.9rem !important;
+            }
+            
+            .filter-chip {
+                font-size: 0.8rem !important;
+                padding: 6px 10px !important;
+            }
+            
+            .categories-grid-panel {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 8px !important;
+                padding: 12px !important;
+            }
+        }
+        
+        /* MOBILE ORDERS PAGE ADAPTATION */
+        @media (max-width: 768px) {
+            /* Orders page header */
+            .page-header {
+                padding: 12px !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .page-title {
+                font-size: 1.25rem !important;
+            }
+            
+            .page-subtitle {
+                font-size: 0.85rem !important;
+            }
+            
+            /* Filter chips */
+            .orders-filter-compact {
+                padding: 0 12px !important;
+                margin-bottom: 12px !important;
+                overflow-x: auto !important;
+                flex-wrap: nowrap !important;
+            }
+            
+            .filter-chip {
+                flex-shrink: 0 !important;
+                font-size: 0.85rem !important;
+                padding: 8px 14px !important;
+            }
+            
+            /* Orders list */
+            .orders-compact-list {
+                padding: 0 12px !important;
+            }
+            
+            /* Order card mobile layout */
+            .order-row {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                padding: 14px !important;
+                gap: 10px !important;
+            }
+            
+            /* Order header - ID, date, status in one row */
+            .order-id {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                width: 100% !important;
+                min-width: 100% !important;
+                gap: 8px !important;
+            }
+            
+            .order-num {
+                font-size: 1.05rem !important;
+                font-weight: 700 !important;
+            }
+            
+            .order-date-small {
+                font-size: 0.8rem !important;
+                margin-left: auto !important;
+            }
+            
+            .order-time-small {
+                display: none !important;
+            }
+            
+            /* Status badge on same row as header */
+            .order-status-col {
+                position: absolute !important;
+                top: 14px !important;
+                right: 14px !important;
+                min-width: auto !important;
+            }
+            
+            .order-status {
+                padding: 4px 10px !important;
+                font-size: 0.75rem !important;
+                border-radius: 12px !important;
+            }
+            
+            .order-status i {
+                display: none !important;
+            }
+            
+            /* Items preview - horizontal scroll */
+            .order-items-preview-col {
+                width: 100% !important;
+                min-width: 100% !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+                padding: 4px 0 !important;
+            }
+            
+            .order-items-preview-col > div {
+                gap: 6px !important;
+            }
+            
+            /* Amount and view button in one row */
+            .order-amount-col {
+                position: static !important;
+                width: auto !important;
+                min-width: auto !important;
+                margin-left: 0 !important;
+                text-align: left !important;
+                font-size: 1.15rem !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 12px !important;
+            }
+            
+            .order-col:last-child {
+                display: inline-flex !important;
+                min-width: auto !important;
+                width: auto !important;
+                margin-left: auto !important;
+            }
+            
+            .order-col:last-child button {
+                padding: 6px 12px !important;
+                font-size: 0.85rem !important;
+            }
+            
+            /* Header actions */
+            .page-header .flex {
+                gap: 6px !important;
+            }
+            
+            .page-header .btn-sm {
+                padding: 8px 12px !important;
+                font-size: 0.85rem !important;
+            }
+            
+            .page-header .btn-sm i {
+                font-size: 0.9rem !important;
+            }
+        }
+        
+        @media (max-width: 479px) {
+            .page-header {
+                padding: 10px !important;
+            }
+            
+            .page-title {
+                font-size: 1.15rem !important;
+            }
+            
+            .orders-filter-compact {
+                padding: 0 10px !important;
+            }
+            
+            .orders-compact-list {
+                padding: 0 10px !important;
+            }
+            
+            .order-row {
+                padding: 12px !important;
+            }
+            
+            .order-num {
+                font-size: 1rem !important;
+            }
+            
+            .order-amount-col {
+                font-size: 1.05rem !important;
+            }
+        }
+        
+        .order-thumb {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .order-thumb img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .order-thumb i {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .order-thumb-more {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-light);
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        
+        /* Notification spacing */
+        .notification-item {
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            margin-bottom: 12px;
+            position: relative;
+            transition: all 0.15s ease;
+        }
+        
+        .notification-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .notification-item.unread {
+            background: var(--primary-light);
+        }
+        
+        .notification-item.notification-clickable {
+            cursor: pointer;
+        }
+        
+        .notification-item.notification-clickable:hover {
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0, 118, 86, 0.15);
+            transform: translateY(-1px);
+        }
+        
+        .notification-actions {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+        }
+        
+        /* Profile modern styles */
+        .profile-modern {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .profile-sidebar {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            height: fit-content;
+            position: sticky;
+            top: 24px;
+        }
+
+        .profile-user-info {
+            text-align: center;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+
+        .profile-avatar-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+
+        .profile-user-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .profile-user-email {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        .profile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 24px;
+        }
+
+        .profile-nav-item {
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.15s;
+            cursor: pointer;
+        }
+
+        .profile-nav-item:hover {
+            background: var(--bg-page);
+            color: var(--text-main);
+        }
+
+        .profile-nav-item.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .profile-logout-btn {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: white;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .profile-logout-btn:hover {
+            background: var(--bg-page);
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .profile-content {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            min-height: 600px;
+        }
+
+        .profile-section {
+            display: none;
+        }
+
+        .profile-section.active {
+            display: block;
+        }
+
+        .profile-section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .profile-section-subtitle {
+            font-size: 1rem;
+            color: var(--text-tertiary);
+            margin-bottom: 32px;
+        }
+
+        .profile-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 32px;
+        }
+
+        .profile-form-card {
+            max-width: 600px;
+        }
+
+        .profile-form-group {
+            margin-bottom: 24px;
+        }
+
+        .profile-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .profile-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            color: var(--text-main);
+            transition: all 0.15s;
+            background: white;
+        }
+
+        .profile-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 118, 86, 0.1);
+        }
+
+        .profile-input:read-only {
+            background: var(--bg-page);
+            color: var(--text-tertiary);
+            cursor: not-allowed;
+        }
+
+        .profile-input-hint {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            margin-top: 6px;
+        }
+
+        .profile-form-actions {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .profile-btn-primary {
+            padding: 12px 32px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .profile-btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .profile-btn-secondary {
+            padding: 10px 20px;
+            background: white;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .profile-btn-secondary:hover {
+            background: var(--bg-page);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .profile-orders-modern {
+            display: grid;
+            gap: 16px;
+        }
+
+        .profile-order-card {
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            transition: all 0.15s;
+        }
+
+        .profile-order-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .profile-order-number {
+            font-weight: 600;
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .profile-order-date {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        .profile-order-status {
+            padding: 6px 12px;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .profile-order-status-новый {
+            background: #DBEAFE;
+            color: #3B82F6;
+        }
+
+        .profile-order-status-в-обработке {
+            background: #FEF3C7;
+            color: #D69E2E;
+        }
+
+        .profile-order-status-завершен {
+            background: #D1FAE5;
+            color: #10B981;
+        }
+
+        .profile-order-status-отменен {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+
+        .profile-order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .profile-order-total {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .profile-order-view {
+            padding: 8px 16px;
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .profile-order-view:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .profile-empty-state {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .profile-empty-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .profile-empty-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .profile-empty-text {
+            font-size: 0.95rem;
+            color: var(--text-tertiary);
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .profile-modern {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .profile-sidebar {
+                position: static;
+            }
+
+            .profile-content {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-content {
+                padding: 24px 16px;
+            }
+
+            .profile-section-title {
+                font-size: 1.5rem;
+            }
+
+            .profile-form-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- APP CONTAINER -->
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <div class="logo-text">BLACK ONYX</div>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <!-- Navigation will be generated by JS -->
+            </nav>
+
+            <div class="sidebar-footer">
+                <!-- Sidebar Product Banner -->
+                <div class="sidebar-banner" id="sidebar-banner" style="display: none;">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                
+                <!-- Hidden elements for compatibility -->
+                <div style="display: none;">
+                    <div id="user-name"></div>
+                    <div id="user-role-label"></div>
+                    <div id="user-avatar"></div>
+                </div>
+                
+                <div class="nav-item" onclick="app.logout()">
+                    <div class="nav-item-icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    <div class="nav-item-text">Выход</div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="header" id="main-header">
+                <div class="header-left">
+                    <!-- Mobile hamburger button -->
+                    <button class="mobile-hamburger-btn" id="mobile-hamburger-btn" 
+                            onclick="var menu = document.getElementById('mobile-sidebar-menu'); var panel = document.getElementById('mobile-sidebar-panel'); menu.classList.add('active'); menu.style.visibility='visible'; menu.style.opacity='1'; menu.style.pointerEvents='all'; menu.style.transition='opacity 0.2s ease, visibility 0s 0s'; panel.style.transform='translateX(0)'; document.body.style.overflow='hidden';"
+                            style="display: flex; width: 40px; height: 40px; background: #007656; color: white; border: none; border-radius: 8px; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; position: relative; z-index: 9999; flex-shrink: 0;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    
+                    <div class="header-logo-main">
+                        <span>BLACK ONYX</span>
+                    </div>
+                    <div class="breadcrumb" id="breadcrumb">
+                        <!-- Breadcrumbs will be generated by JS -->
+                    </div>
+                </div>
+                
+                <div class="header-center">
+                    <div class="search-bar-main" style="max-width: 600px; width: 100%; position: relative;">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="header-search" placeholder="Поиск товаров..." oninput="app.liveSearch(event)" onkeyup="app.searchFromHeader(event)">
+                        <button class="search-btn-main" onclick="app.performHeaderSearch()">Найти</button>
+                        <div class="search-results-dropdown" id="search-results-dropdown" style="display: none;"></div>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="header-contact">
+                        <i class="fas fa-phone"></i>
+                        <span>+375 (29) 123-45-67</span>
+                    </div>
+                    <button class="header-icon-btn customer-only" onclick="app.nav('favorites')" title="Избранное">
+                        <i class="fas fa-heart"></i>
+                        <span class="icon-badge" id="favorites-badge" style="display: none;"></span>
+                    </button>
+                    <button class="header-icon-btn" onclick="app.nav('comparison')" title="Сравнение товаров">
+                        <i class="fas fa-balance-scale"></i>
+                        <span class="icon-badge" id="comparison-badge" style="display: none;"></span>
+                    </button>
+                    <button class="header-icon-btn customer-only" onclick="app.nav('cart')" title="Корзина">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="icon-badge" id="cart-badge" style="display: none;"></span>
+                    </button>
+                    <!-- Guest/Profile button - changes based on auth state -->
+                    <div id="header-profile-btn">
+                        <button class="header-icon-btn guest-only" onclick="window.location.href='login.html'" title="Вход / Регистрация">
+                            <i class="fas fa-user-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hidden elements for compatibility -->
+                <div style="display: none;">
+                    <div id="user-name"></div>
+                    <div id="user-role-label"></div>
+                    <div id="user-avatar"></div>
+                    <div id="page-header"></div>
+                </div>
+            </header>
+            
+            <!-- Mobile search bar - visible only on mobile when on catalog page -->
+            <div class="mobile-search-bar" id="mobile-search-bar" style="display: none; width: 100%; padding: 8px 12px; background: var(--bg-card); border-bottom: 1px solid var(--border); position: fixed; top: 56px; left: 0; right: 0; z-index: 1000;">
+                <div style="position: relative; width: 100%;">
+                    <input type="text" id="mobile-filter-search" class="form-input" 
+                           placeholder="Поиск товаров..." 
+                           style="width: 100%; padding: 8px 76px 8px 12px; border-radius: 8px; font-size: 0.9rem; height: 40px;"
+                           onkeyup="app.debouncedApplyFilters()">
+                    <button class="btn btn-outline btn-sm" 
+                            onclick="document.getElementById('mobile-filter-search').value = ''; app.applyFilters();"
+                            style="position: absolute; right: 44px; top: 50%; transform: translateY(-50%); padding: 6px 10px; min-width: auto; height: 32px;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <i class="fas fa-search" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--text-tertiary); font-size: 0.9rem; pointer-events: none;"></i>
+                </div>
+            </div>
+
+            <div class="content-area" id="content-mount">
+                <!-- Content will be loaded here -->
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MOBILE SIDEBAR MENU (HAMBURGER) -->
+    <div class="mobile-sidebar-menu" id="mobile-sidebar-menu" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9998; pointer-events: none; visibility: hidden; opacity: 0; transition: opacity 0.2s ease, visibility 0s 0.2s;">
+        <div class="mobile-sidebar-overlay" id="mobile-sidebar-overlay" 
+             onclick="var menu = document.getElementById('mobile-sidebar-menu'); var panel = document.getElementById('mobile-sidebar-panel'); menu.classList.remove('active'); menu.style.visibility='hidden'; menu.style.opacity='0'; menu.style.pointerEvents='none'; panel.style.transform='translateX(-100%)'; document.body.style.overflow='';"
+             style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div class="mobile-sidebar-panel" id="mobile-sidebar-panel" style="position: absolute; top: 0; left: 0; bottom: 0; width: 220px; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(10px); box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15); z-index: 2; display: flex; flex-direction: column; overflow: hidden; transform: translateX(-100%); transition: transform 0.2s ease;">
+            <div class="mobile-sidebar-header" style="display: flex; align-items: center; justify-content: space-between; padding: 16px; border-bottom: 1px solid rgba(0, 0, 0, 0.1); background: rgba(0, 118, 86, 0.95); color: white;">
+                <div class="mobile-sidebar-logo" style="display: flex; align-items: center; gap: 10px; font-size: 1rem; font-weight: 700;">
+                    <i class="fas fa-gem"></i>
+                    <span>BLACK ONYX</span>
+                </div>
+                <button class="mobile-sidebar-close" id="mobile-sidebar-close"
+                        onclick="var menu = document.getElementById('mobile-sidebar-menu'); var panel = document.getElementById('mobile-sidebar-panel'); menu.classList.remove('active'); menu.style.visibility='hidden'; menu.style.opacity='0'; menu.style.pointerEvents='none'; panel.style.transform='translateX(-100%)'; document.body.style.overflow='';"
+                        style="width: 32px; height: 32px; border: none; background: rgba(255, 255, 255, 0.2); color: white; border-radius: 6px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-sidebar-content" id="mobile-sidebar-content" style="flex: 1; overflow-y: auto; padding: 8px;">
+                <!-- Динамически генерируется через JavaScript -->
+                <div style="padding: 12px; text-align: center; color: #999; font-size: 0.9rem;">
+                    Загрузка меню...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FILTERS SIDEBAR -->
+    <div class="filters-sidebar" id="filters-sidebar">
+        <div class="filters-header">
+            <h3 class="filters-title">
+                <i class="fas fa-filter"></i> Фильтры
+            </h3>
+            <button class="filters-close" onclick="app.closeFilters()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="filters-content">
+            <!-- Quick Filters -->
+            <div class="quick-filters">
+                <button class="quick-filter-btn" onclick="app.applyQuickFilter('in-stock')">
+                    <i class="fas fa-check-circle"></i> В наличии
+                </button>
+                <button class="quick-filter-btn" onclick="app.applyQuickFilter('bosch')">
+                    <i class="fas fa-cog"></i> Bosch
+                </button>
+                <button class="quick-filter-btn" onclick="app.applyQuickFilter('makita')">
+                    <i class="fas fa-tools"></i> Makita
+                </button>
+                <button class="quick-filter-btn" onclick="app.applyQuickFilter('cheap')">
+                    <i class="fas fa-dollar-sign"></i> До 100 BYN
+                </button>
+            </div>
+
+            <!-- Search -->
+            <div class="filter-group">
+                <label class="filter-label">Поиск</label>
+                <input type="text" id="filter-search" class="form-input" placeholder="Название, артикул, описание..."
+                    onkeyup="app.debouncedApplyFilters()">
+            </div>
+
+            <!-- Category -->
+            <div class="filter-group">
+                <label class="filter-label">Категория</label>
+                <select id="filter-category" class="form-select" onchange="app.applyFilters()">
+                    <option value="">Все категории</option>
+                </select>
+            </div>
+
+            <!-- Price Range -->
+            <div class="filter-group">
+                <label class="filter-label">Цена (BYN)</label>
+                <div class="price-range">
+                    <input type="number" id="filter-min-price" class="form-input" placeholder="От" min="0" step="0.01"
+                        onkeyup="app.debouncedApplyFilters()">
+                    <span class="price-separator">-</span>
+                    <input type="number" id="filter-max-price" class="form-input" placeholder="До" min="0" step="0.01"
+                        onkeyup="app.debouncedApplyFilters()">
+                </div>
+            </div>
+
+            <!-- In Stock -->
+            <div class="filter-group">
+                <label class="form-check">
+                    <input type="checkbox" id="filter-in-stock" onchange="app.applyFilters()">
+                    <span class="ml-2">Только в наличии</span>
+                </label>
+            </div>
+
+            <!-- Attributes -->
+            <div class="filter-group" id="attributes-filter-group" style="display: none;">
+                <label class="filter-label">Характеристики</label>
+                <div id="attributes-filters">
+                    <!-- Attributes will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="filters-actions">
+                <button class="btn btn-outline w-full" onclick="app.resetFilters()">
+                    <i class="fas fa-undo"></i> Сбросить
+                </button>
+                <button class="btn btn-primary w-full" onclick="app.applyFilters(); app.closeFilters()">
+                    <i class="fas fa-check"></i> Применить
+                </button>
+            </div>
+
+            <!-- Results Count -->
+            <div class="filters-results" id="filters-results">
+                <span id="results-count">0 товаров</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FILTERS OVERLAY -->
+    <div class="filters-overlay" id="filters-overlay" onclick="app.closeFilters()"></div>
+
+    <!-- CATEGORIES SIDEBAR -->
+    <div class="categories-sidebar-drawer" id="categories-sidebar">
+        <div class="filters-header">
+            <h3 class="filters-title">
+                <i class="fas fa-list"></i> Категории
+            </h3>
+            <button class="filters-close" onclick="app.closeCategories()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="filters-content">
+            <div id="categories-list-sidebar">
+                <!-- Categories will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CATEGORIES OVERLAY -->
+    <div class="filters-overlay" id="categories-overlay" onclick="app.closeCategories()"></div>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button class="scroll-to-top" id="scroll-to-top" onclick="app.scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- MODAL FOR PRODUCT DETAILS -->
+    <div class="modal-overlay" id="product-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="product-modal-title">Детали товара</h3>
+                <button class="modal-close" onclick="app.closeModal('product-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="product-modal-content">
+                <!-- Product details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('product-modal')">Закрыть</button>
+                <button class="btn btn-primary" id="product-modal-add-btn" onclick="app.addToCartFromModal()">
+                    <i class="fas fa-cart-plus"></i> Добавить в корзину
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR ORDER DETAILS -->
+    <div class="modal-overlay" id="order-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="order-modal-title">Детали заказа</h3>
+                <button class="modal-close" onclick="app.closeModal('order-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="order-modal-content">
+                <!-- Order details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('order-modal')">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR REVIEWS -->
+    <div class="modal-overlay" id="reviews-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="reviews-modal-title">Отзывы о товаре</h3>
+                <button class="modal-close" onclick="app.closeModal('reviews-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="reviews-modal-content">
+                <!-- Reviews will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('reviews-modal')">Закрыть</button>
+                <button class="btn btn-primary" onclick="app.showAddReviewModal()">
+                    <i class="fas fa-plus"></i> Написать отзыв
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR ADD REVIEW -->
+    <div class="modal-overlay" id="add-review-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Написать отзыв</h3>
+                <button class="modal-close" onclick="app.closeModal('add-review-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="add-review-form">
+                    <input type="hidden" id="review-product-id" value="">
+
+                    <div class="form-group">
+                        <label class="form-label">Оценка *</label>
+                        <div class="flex gap-2" id="rating-stars">
+                            <!-- Stars will be generated by JS -->
+                        </div>
+                        <input type="hidden" id="review-rating" value="5" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="review-comment">Комментарий</label>
+                        <textarea id="review-comment" class="form-input" rows="4"
+                            placeholder="Расскажите о вашем опыте использования товара..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('add-review-modal')">Отмена</button>
+                <button class="btn btn-primary" onclick="app.submitReview()">
+                    <i class="fas fa-paper-plane"></i> Отправить отзыв
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR ADMIN REVIEWS MODERATION -->
+    <div class="modal-overlay" id="admin-reviews-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Модерация отзывов</h3>
+                <button class="modal-close" onclick="app.closeModal('admin-reviews-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="admin-reviews-modal-content">
+                <!-- Pending reviews will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('admin-reviews-modal')">Закрыть</button>
+                <button class="btn btn-primary" onclick="app.refreshPendingReviews()">
+                    <i class="fas fa-sync"></i> Обновить
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR CREATE/EDIT FAQ CATEGORY -->
+    <div class="modal-overlay" id="faq-category-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="faq-category-modal-title">Создать категорию FAQ</h3>
+                <button class="modal-close" onclick="app.closeModal('faq-category-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="faq-category-form">
+                    <input type="hidden" id="faq-category-id" value="">
+
+                    <div class="form-group">
+                        <label class="form-label" for="faq-category-name">Название категории *</label>
+                        <input type="text" id="faq-category-name" class="form-input" required
+                            placeholder="Например: Доставка и оплата">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="faq-category-description">Описание</label>
+                        <textarea id="faq-category-description" class="form-input" rows="3"
+                            placeholder="Краткое описание категории"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="faq-category-sort-order">Порядок сортировки</label>
+                        <input type="number" id="faq-category-sort-order" class="form-input" value="0" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-check">
+                            <input type="checkbox" id="faq-category-active" checked>
+                            <span class="ml-2">Активна (видна пользователям)</span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('faq-category-modal')">Отмена</button>
+                <button class="btn btn-primary" onclick="app.saveFaqCategory()">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR CREATE/EDIT FAQ ARTICLE -->
+    <div class="modal-overlay" id="faq-article-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="faq-article-modal-title">Создать статью FAQ</h3>
+                <button class="modal-close" onclick="app.closeModal('faq-article-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="faq-article-form">
+                    <input type="hidden" id="faq-article-id" value="">
+
+                    <div class="form-group">
+                        <label class="form-label" for="faq-article-category">Категория *</label>
+                        <select id="faq-article-category" class="form-select" required>
+                            <option value="">Выберите категорию</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="faq-article-title">Заголовок статьи *</label>
+                        <input type="text" id="faq-article-title" class="form-input" required
+                            placeholder="Вопрос или заголовок статьи">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="faq-article-content">Содержание статьи *</label>
+                        <textarea id="faq-article-content" class="form-input" rows="8" required
+                            placeholder="Полный текст статьи с ответом на вопрос"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="faq-article-tags">Теги (через запятую)</label>
+                        <input type="text" id="faq-article-tags" class="form-input"
+                            placeholder="доставка, оплата, возврат">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-check">
+                            <input type="checkbox" id="faq-article-active" checked>
+                            <span class="ml-2">Активна (видна пользователям)</span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('faq-article-modal')">Отмена</button>
+                <button class="btn btn-primary" onclick="app.saveFaqArticle()">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR CREATE/EDIT PRODUCT -->
+    <div class="modal-overlay" id="product-admin-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="product-admin-modal-title">Добавить товар</h3>
+                <button class="modal-close" onclick="app.closeModal('product-admin-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="product-admin-form">
+                    <input type="hidden" id="product-id" value="">
+
+                    <div class="form-group">
+                        <label class="form-label" for="product-article">Артикул *</label>
+                        <input type="text" id="product-article" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="product-name">Название *</label>
+                        <input type="text" id="product-name" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="product-description">Описание</label>
+                        <textarea id="product-description" class="form-input" rows="3"></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="form-group">
+                            <label class="form-label" for="product-price">Цена (BYN) *</label>
+                            <input type="number" id="product-price" class="form-input" step="0.01" min="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="product-cost">Себестоимость (BYN)</label>
+                            <input type="number" id="product-cost" class="form-input" step="0.01" min="0" value="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="product-stock">Количество на складе</label>
+                            <input type="number" id="product-stock" class="form-input" min="0" value="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="product-category">Категория</label>
+                        <div class="flex gap-2">
+                            <select id="product-category" class="form-select">
+                                <option value="">Без категории</option>
+                            </select>
+                            <button type="button" class="btn btn-outline btn-icon" onclick="app.showCreateCategoryModal()" title="Добавить категорию">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="product-image">URL изображения</label>
+                        <input type="url" id="product-image" class="form-input" placeholder="https://...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-check">
+                            <input type="checkbox" id="product-active" checked>
+                            <span class="ml-2">Активен (виден пользователям)</span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('product-admin-modal')">Отмена</button>
+                <button class="btn btn-primary" onclick="app.saveProduct()">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR CREATE/EDIT CATEGORY -->
+    <div class="modal-overlay" id="category-admin-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="category-admin-modal-title">Добавить категорию</h3>
+                <button class="modal-close" onclick="app.closeModal('category-admin-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="category-admin-form">
+                    <input type="hidden" id="category-id" value="">
+
+                    <div class="form-group">
+                        <label class="form-label" for="category-name">Название категории *</label>
+                        <input type="text" id="category-name" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="category-parent">Родительская категория</label>
+                        <select id="category-parent" class="form-select">
+                            <option value="">Корневая категория</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('category-admin-modal')">Отмена</button>
+                <button class="btn btn-primary" onclick="app.saveCategory()">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR EDIT PRODUCT (QUICK EDIT) -->
+    <div class="modal-overlay" id="edit-product-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-edit"></i> Редактировать товар
+                </h3>
+                <button class="modal-close" onclick="app.closeModal('edit-product-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-product-form">
+                    <input type="hidden" id="edit-product-id" value="">
+
+                    <div class="form-group">
+                        <label class="form-label" for="edit-product-name">
+                            <i class="fas fa-tag"></i> Название товара *
+                        </label>
+                        <input type="text" id="edit-product-name" class="form-input" required placeholder="Введите название товара">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="edit-product-price">
+                                <i class="fas fa-ruble-sign"></i> Цена (BYN) *
+                            </label>
+                            <input type="number" id="edit-product-price" class="form-input" required min="0" step="0.01" placeholder="0.00">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="edit-product-stock">
+                                <i class="fas fa-boxes"></i> Количество *
+                            </label>
+                            <input type="number" id="edit-product-stock" class="form-input" required min="0" step="1" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="edit-product-article">
+                            <i class="fas fa-barcode"></i> Артикул
+                        </label>
+                        <input type="text" id="edit-product-article" class="form-input" readonly style="background: var(--bg-page); cursor: not-allowed;">
+                        <small style="color: var(--text-tertiary); font-size: 0.75rem;">Артикул нельзя изменить</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('edit-product-modal')">
+                    <i class="fas fa-times"></i> Отмена
+                </button>
+                <button class="btn btn-primary" onclick="app.saveEditedProduct()">
+                    <i class="fas fa-save"></i> Сохранить
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR SEND NOTIFICATION -->
+    <div class="modal-overlay" id="send-notification-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Отправить уведомление</h3>
+                <button class="modal-close" onclick="app.closeModal('send-notification-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="send-notification-form">
+                    <div class="form-group">
+                        <label class="form-label">Получатель *</label>
+                        <select id="notification-user" class="form-select" required>
+                            <option value="">Все активные пользователи</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="notification-type">Тип уведомления</label>
+                        <select id="notification-type" class="form-select">
+                            <option value="system">Системное</option>
+                            <option value="order">Заказ</option>
+                            <option value="marketing">Маркетинг</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="notification-title">Заголовок *</label>
+                        <input type="text" id="notification-title" class="form-input" required
+                            placeholder="Краткий заголовок уведомления">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="notification-message">Текст уведомления *</label>
+                        <textarea id="notification-message" class="form-input" rows="4" required
+                            placeholder="Подробный текст уведомления"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('send-notification-modal')">Отмена</button>
+                <button class="btn btn-primary" id="send-notification-btn" onclick="app.sendNotification()">
+                    <i class="fas fa-paper-plane"></i> Отправить уведомление
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR FAQ ARTICLE -->
+    <div class="modal-overlay" id="faq-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="faq-modal-title">Статья базы знаний</h3>
+                <button class="modal-close" onclick="app.closeModal('faq-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="faq-modal-content">
+                <!-- FAQ article content will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('faq-modal')">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR CREATE TICKET -->
+    <div class="modal-overlay" id="create-ticket-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="create-ticket-modal-title">Новое обращение</h3>
+                <button class="modal-close" onclick="app.closeModal('create-ticket-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="create-ticket-form">
+                    <div class="form-group">
+                        <label class="form-label" for="ticket-subject">Тема обращения *</label>
+                        <input type="text" id="ticket-subject" class="form-input" required
+                            placeholder="Кратко опишите суть проблемы">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="ticket-description">Описание проблемы *</label>
+                        <textarea id="ticket-description" class="form-input" rows="6" required
+                            placeholder="Подробно опишите вашу проблему или вопрос"></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="form-group">
+                            <label class="form-label" for="ticket-category">Категория</label>
+                            <select id="ticket-category" class="form-select">
+                                <option value="technical">Техническая поддержка</option>
+                                <option value="order">Заказы и доставка</option>
+                                <option value="delivery">Доставка</option>
+                                <option value="warranty">Гарантия</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="ticket-priority">Приоритет</label>
+                            <select id="ticket-priority" class="form-select">
+                                <option value="normal">Нормальный</option>
+                                <option value="high">Высокий</option>
+                                <option value="urgent">Срочно</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('create-ticket-modal')">Отмена</button>
+                <button class="btn btn-primary" onclick="app.createTicket()">
+                    <i class="fas fa-paper-plane"></i> Создать обращение
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR TICKET DETAILS -->
+    <div class="modal-overlay" id="ticket-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="ticket-modal-title">Обращение в поддержку</h3>
+                <button class="modal-close" onclick="app.closeModal('ticket-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="ticket-modal-content">
+                <!-- Ticket details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('ticket-modal')">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR CHAT -->
+    <div class="modal-overlay" id="chat-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="chat-modal-title">Онлайн-чат с поддержкой</h3>
+                <button class="modal-close" onclick="app.closeModal('chat-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="chat-session-id" value="">
+
+                <!-- Chat Messages -->
+                <div id="chat-messages" class="bg-gray-50 rounded-lg p-4 mb-4 h-64 overflow-y-auto border">
+                    <!-- Messages will be loaded here -->
+                </div>
+
+                <!-- Chat Input -->
+                <div class="flex gap-2">
+                    <input type="text" id="chat-message-input" class="form-input flex-1"
+                        placeholder="Введите ваше сообщение..."
+                        onkeypress="if(event.key === 'Enter') app.sendChatMessage()">
+                    <button class="btn btn-primary" onclick="app.sendChatMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+
+                <div class="text-sm text-tertiary mt-2">
+                    <i class="fas fa-info-circle"></i> Сообщения отправляются мгновенно. Специалист поддержки ответит в
+                    ближайшее время.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('chat-modal')">Закрыть</button>
+                <button class="btn btn-danger" onclick="app.endChatSession()">
+                    <i class="fas fa-times"></i> Завершить чат
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR USER MARKUP CREATE/EDIT -->
+    <div class="modal-overlay" id="user-markup-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="user-markup-modal-title">Добавить наценку</h3>
+                <button class="modal-close" onclick="app.closeModal('user-markup-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="user-markup-form">
+                    <input type="hidden" id="user-markup-id" value="">
+
+                    <div class="form-group">
+                        <label class="form-label" for="user-markup-user">Пользователь *</label>
+                        <select id="user-markup-user" class="form-select" required>
+                            <option value="">Выберите пользователя</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="user-markup-percent">Процент наценки *</label>
+                        <div class="flex gap-2 items-center">
+                            <input type="number" id="user-markup-percent" class="form-input" step="0.01" min="0"
+                                max="100" required>
+                            <span class="text-sm text-tertiary">%</span>
+                        </div>
+                        <div class="text-xs text-tertiary mt-1">
+                            Рекомендуемый диапазон: 0-25%
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-check">
+                            <input type="checkbox" id="user-markup-active" checked>
+                            <span class="ml-2">Активна (применять наценку)</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="user-markup-reason">Причина изменения</label>
+                        <input type="text" id="user-markup-reason" class="form-input"
+                            placeholder="Например: VIP клиент, скидка за объем">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('user-markup-modal')">Отмена</button>
+                <button class="btn btn-primary" onclick="app.saveUserMarkup()">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR USER MARKUP HISTORY -->
+    <div class="modal-overlay" id="user-markup-history-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="user-markup-history-modal-title">История изменений наценки</h3>
+                <button class="modal-close" onclick="app.closeModal('user-markup-history-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="user-markup-history-content">
+                <!-- History will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('user-markup-history-modal')">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkout-modal" data-static>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-shopping-cart"></i> Оформление заказа</h2>
+                <button class="modal-close" onclick="app.closeModal('checkout-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="checkout-summary">
+                    <div class="summary-row">
+                        <span class="summary-label"><i class="fas fa-box"></i> Товаров:</span>
+                        <span class="summary-value" id="checkout-items-count">0 шт</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span class="summary-label">Итого:</span>
+                        <span class="summary-value" id="checkout-total-amount">0.00 BYN</span>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 24px;">
+                    <label for="order-comment">
+                        <i class="fas fa-comment"></i> Комментарий к заказу (необязательно)
+                    </label>
+                    <textarea 
+                        id="order-comment" 
+                        class="form-control" 
+                        rows="4" 
+                        maxlength="500"
+                    ></textarea>
+                    <small class="form-text"><i class="fas fa-info-circle"></i> Максимум 500 символов</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="app.closeModal('checkout-modal')">
+                    <i class="fas fa-times"></i> Отмена
+                </button>
+                <button class="btn btn-primary" onclick="app.confirmCheckout()">
+                    <i class="fas fa-check"></i> Оформить заказ
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JavaScript files with manual cache-busting version -->
+    <script src="/js/modules/comparison.js?v=999"></script>
+    <script src="/js/core/store.js?v=1017"></script>
+    <script src="/js/core/events.js?v=1017"></script>
+    <!-- mobile-nav.js больше не нужен - функции перенесены в app.js -->
+    <!-- <script src="/js/modules/mobile-nav.js?v=1017"></script> -->
+    <script src="/js/app.js?v=1038"></script>
+    <script src="/js/core/api.js?v=1017"></script>
+    <script src="/js/modules/products.js?v=999"></script>
+    <script src="/js/core/router.js?v=1038"></script>
+    <script src="/js/pages/manager.js?v=999"></script>
+    <script src="/js/modules/cart.js?v=1040"></script>
+    <script src="/js/modules/orders.js?v=1040"></script>
+    <script src="/js/modules/profile.js?v=1033"></script>
+    <script src="/js/modules/notifications.js?v=999"></script>
+    <script src="/js/modules/auth.js?v=999"></script>
+    <script src="/js/pages/admin.js?v=1038"></script>
+    <script src="/js/pages/registrations.js?v=999"></script>
+    <script src="/js/pages/catalog.js?v=1017"></script>
+    <script src="/js/pages/reviews.js?v=999"></script>
+    <script src="/js/pages/analytics.js?v=999"></script>
+    <script src="/js/pages/product-detail.js?v=999"></script>
+    <script src="/js/pages/comparison.js?v=999"></script>
+    
+    <!-- Mobile menu initialization -->
+    <script>
+    (function() {
+        // Добавляем стили для кнопок меню
+        const style = document.createElement('style');
+        style.textContent = `
+            .mobile-sidebar-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 14px;
+                border-radius: 8px;
+                color: #4b5563;
+                font-size: 0.9rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.15s;
+                margin-bottom: 4px;
+                background: transparent;
+                position: relative;
+            }
+            .mobile-sidebar-item:hover {
+                background: rgba(0, 118, 86, 0.1);
+                color: #007656;
+            }
+            .mobile-sidebar-item.active {
+                background: rgba(0, 118, 86, 0.15);
+                color: #007656;
+                font-weight: 600;
+            }
+            .mobile-sidebar-item i {
+                font-size: 1.1rem;
+                width: 20px;
+                text-align: center;
+            }
+            .mobile-sidebar-divider {
+                height: 1px;
+                background: rgba(0, 0, 0, 0.1);
+                margin: 8px 0;
+            }
+            .mobile-menu-badge {
+                position: absolute;
+                top: 50%;
+                right: 12px;
+                transform: translateY(-50%);
+                min-width: 20px;
+                height: 20px;
+                background: #dc2626;
+                color: white;
+                border-radius: 10px;
+                font-size: 0.7rem;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 6px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Генерация мобильного меню - ТОЛЬКО как fallback если app не загрузился
+        function generateMobileMenu() {
+            console.log('=== generateMobileMenu FALLBACK ВЫЗВАНА ===');
+            const content = document.getElementById('mobile-sidebar-content');
+            if (!content) {
+                console.log('mobile-sidebar-content не найден');
+                return;
+            }
+            
+            // ВСЕГДА используем app.renderMobileSidebar если доступен
+            if (window.app && typeof window.app.renderMobileSidebar === 'function') {
+                console.log('✅ Используем app.renderMobileSidebar');
+                window.app.renderMobileSidebar();
+                return;
+            }
+            
+            console.log('⚠️ app.renderMobileSidebar не доступен, показываем заглушку');
+            
+            // Показываем заглушку
+            content.innerHTML = `
+                <div style="padding: 20px; text-align: center; color: #999;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 12px;"></i>
+                    <div>Загрузка меню...</div>
+                </div>
+            `;
+        }
+        
+        // НЕ вызываем автоматически - пусть app.js сам вызовет renderMobileSidebar
+        // Fallback только если через 2 секунды app не загрузился
+        setTimeout(function() {
+            const content = document.getElementById('mobile-sidebar-content');
+            if (content && content.innerHTML.includes('Загрузка меню...')) {
+                console.log('⚠️ App не загрузился за 2 секунды, используем fallback');
+                generateMobileMenu();
+            }
+        }, 2000);
+    })();
+    </script>
+</body>
+
+</html>
