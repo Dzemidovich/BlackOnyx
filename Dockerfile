@@ -1,16 +1,15 @@
-# КОРРЕКТНЫЙ DOCKERFILE для вашей структуры
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Копируем файл проекта (он находится в той же папке, что и Dockerfile)
-COPY Diplom.csproj ./
-RUN dotnet restore
+# Копируем всё
+COPY . .
 
-# Копируем остальные файлы проекта
-COPY . ./
-RUN dotnet publish -c Release -o /app --no-restore
+# Восстанавливаем первый найденный .csproj файл
+RUN dotnet restore $(find . -name "*.csproj" | head -1)
 
-# Этап рантайма
+# Публикуем
+RUN dotnet publish $(find . -name "*.csproj" | head -1) -c Release -o /app
+
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app .
