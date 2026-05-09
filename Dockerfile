@@ -1,3 +1,4 @@
+# Этап сборки
 FROM ://microsoft.com AS build
 WORKDIR /src
 
@@ -5,10 +6,11 @@ WORKDIR /src
 COPY ["Diplom.csproj", "./"]
 RUN dotnet restore "Diplom.csproj"
 
-# Копируем всё остальное и собираем
+# Копируем все файлы и собираем проект
 COPY . .
 RUN dotnet publish "Diplom.csproj" -c Release -o /app/publish
 
+# Этап запуска (вот здесь была ошибка на скриншоте)
 FROM ://microsoft.com
 WORKDIR /app
 COPY --from=build /app/publish .
